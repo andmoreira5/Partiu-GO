@@ -1,4 +1,3 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
 
 const estilo = StyleSheet.create({
@@ -13,11 +12,18 @@ const estilo = StyleSheet.create({
     height: 700,
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-around'
   },
   ondas:{
   height: 70,
   },
+  input:{
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    padding: 10,
+    borderColor: 'white',
+  }
 });
 
 export default estilo;
