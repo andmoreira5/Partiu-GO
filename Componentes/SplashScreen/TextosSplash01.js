@@ -13,12 +13,13 @@ export default function TextosSplash01(){
   return(
     <>
       <TituloBranco conteudo='Bem vindo(a)!'/>
-      <TextoComum conteudo='App oficial da RCC Missão Velha!' />
-      <TextoComum conteudo='Você quer me dizer seu nome?' />
-      <View style={estilo.alinhamentoHorizontal}>
-         <InputText />
-        <BotaoConfirmacao title='OKK'/>
-      </View>
+      <View >
+        <TextoComum conteudo='Você quer me dizer seu nome?' />
+        <View style={estilo.alinhamentoHorizontal}>
+          <InputText />
+          <BotaoConfirmacao title='OK'/>
+        </View>
+        </View>
       <BotaoTransparente title="NEEMM (NÃO) >"  />
       
     </>

@@ -11,7 +11,8 @@ const estiloTextos = StyleSheet.create({
     fontWeight: 'bold'
     },
     textoComum:{
-        fontSize: 16,
+        fontSize: 17,
+        paddingBottom: 10,
     },
     textoComumCinza:{
         fontSize: 16,

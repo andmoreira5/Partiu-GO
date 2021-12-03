@@ -21,7 +21,9 @@ const estilo = StyleSheet.create({
     flex: 1,
     flexDirection:'row',
     maxHeight: 50,
-  }
+    alignItems: 'center',
+    justifyContent:'flex-end',
+  },
 });
 
 export default estilo;

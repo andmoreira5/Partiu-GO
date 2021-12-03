@@ -8,7 +8,8 @@ export default function InputText(){
     return(
         <TextInput 
             style={estiloInput.input}
-            placeholder='NOME'
+            placeholder='INSIRA SEU NOME AQUI'
+            placeholderTextColor='rgba(255,255,255,0.5)'
         />
     );
 }

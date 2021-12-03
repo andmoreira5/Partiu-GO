@@ -8,7 +8,6 @@ const estiloBotao= StyleSheet.create({
       borderRadius:10,
       borderColor: 'white',
         borderWidth: 2,
-        marginTop:10,
   },
   transparente:{
     fontSize: 20,
