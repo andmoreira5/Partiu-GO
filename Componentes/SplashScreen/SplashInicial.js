@@ -2,7 +2,7 @@ import React from 'react';
 import {Image} from 'react-native';
 import estilo from './estilosSplash.js';
 import { LinearGradient } from 'expo-linear-gradient';
-import Texto01 from './Textos01'
+import TextosSplash01 from './TextosSplash01'
 import LottieView from 'lottie-react-native';
 
 export default function SplashInicial(){
@@ -15,7 +15,7 @@ export default function SplashInicial(){
         colors={['#68b5b8', '#3b5998']}
         style={estilo.gradiente}>
 
-        <Texto01 />
+        <TextosSplash01 />
 
       </LinearGradient>
     </>

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const estilo = StyleSheet.create({
+const estiloTextos = StyleSheet.create({
   tituloAmarelo:{
       color: '#f2e3ba',
       fontSize:25,
@@ -12,11 +12,14 @@ const estilo = StyleSheet.create({
     },
     textoComum:{
         fontSize: 16,
-
     },
     textoComumCinza:{
-        
+        fontSize: 16,
+        color: '#4d4d4d',
+    },
+    textoComumLaranja:{
+        color: '#ef5a34',
     }
 });
 
-export default estilo;
+export default estiloTextos;

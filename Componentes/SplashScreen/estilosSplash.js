@@ -10,19 +10,17 @@ const estilo = StyleSheet.create({
   gradiente:{
     width: '100%',
     height: 700,
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   ondas:{
   height: 70,
   },
-  input:{
-    height: 40,
-    margin: 12,
-    borderBottomWidth: 1,
-    padding: 10,
-    borderColor: 'white',
+  alinhamentoHorizontal:{
+    flex: 1,
+    flexDirection:'row',
+    maxHeight: 50,
   }
 });
 
