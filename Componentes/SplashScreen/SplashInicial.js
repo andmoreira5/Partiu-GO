@@ -6,6 +6,7 @@ import TextosSplash01 from './TextosSplash01'
 import LottieView from 'lottie-react-native';
 
 export default function SplashInicial(){
+
   return(
     <>
       <Image style={estilo.imagem} source={require('../../assets/logo.png')} />

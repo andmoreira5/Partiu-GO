@@ -24,6 +24,16 @@ const estilo = StyleSheet.create({
     alignItems: 'center',
     justifyContent:'flex-end',
   },
+  aviao:{
+    height: 400,
+  },
+  gradienteVerde:{
+    height:400,
+    width: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  }
 });
 
 export default estilo;

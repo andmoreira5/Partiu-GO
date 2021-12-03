@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import SplashInicial from './Componentes/SplashScreen/SplashInicial';
 import {
   setCustomText,
 } from 'react-native-global-props';
+import SplashInicial02 from './Componentes/SplashScreen/SplashInicial02';
 
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {setCustomText}
-      <SplashInicial />
+      <SplashInicial02 />
         
     </View>
   );

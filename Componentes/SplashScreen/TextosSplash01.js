@@ -19,7 +19,7 @@ export default function TextosSplash01(){
           <InputText />
           <BotaoConfirmacao title='OK'/>
         </View>
-        </View>
+       </View>
       <BotaoTransparente title="NEEMM (NÃO) >"  />
       
     </>

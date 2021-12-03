@@ -4,11 +4,13 @@ const estiloTextos = StyleSheet.create({
   tituloAmarelo:{
       color: '#f2e3ba',
       fontSize:25,
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      marginBottom:30,
   },
   tituloBranco:{
     fontSize:25,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    
     },
     textoComum:{
         fontSize: 17,
