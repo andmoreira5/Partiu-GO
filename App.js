@@ -1,38 +1,16 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import {
-  setCustomText,
-} from 'react-native-global-props';
-import SplashInicial02 from './Componentes/SplashScreen/SplashInicial02';
+import { confFontes } from './Componentes/Configuracoes/Configuracoes';
+import Routes from './Routes';
 
 
 export default function App() {
 
-
-  const customTextProps = {
-    style: {
-      fontSize: 20,
-      fontFamily: 'Lato Regular',
-      color: 'white'
-    }
-  };
-
-  setCustomText(customTextProps);
-
+  //configurando as cores das fontes do app.
+  confFontes();
+  
   return (
-    <View style={styles.container}>
-      {setCustomText}
-      <SplashInicial02 />
-        
-    </View>
+    <Routes />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center'
-  },
-});
+

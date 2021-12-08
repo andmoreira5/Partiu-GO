@@ -26,6 +26,7 @@ const estilo = StyleSheet.create({
   },
   aviao:{
     height: 400,
+    width: '100%'
   },
   gradienteVerde:{
     height:400,
@@ -33,7 +34,14 @@ const estilo = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around'
-  }
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    backgroundColor: 'white'
+  },
 });
 
 export default estilo;
