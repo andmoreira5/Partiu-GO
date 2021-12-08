@@ -15,8 +15,8 @@ const Routes = () => {
             <AppStack.Navigator screenOptions={{
                 headerShown: false
             }}>
-                <AppStack.Screen name="Home" component={SplashInicial} />
-                <AppStack.Screen name="Form" component={SplashInicial02} />
+                <AppStack.Screen name="SplashInicial01" component={SplashInicial} />
+                <AppStack.Screen name="SplashInicial02" component={SplashInicial02} />
             </AppStack.Navigator>
         </NavigationContainer>
     );

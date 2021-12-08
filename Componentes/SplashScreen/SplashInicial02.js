@@ -6,8 +6,10 @@ import TextosSplash01 from './TextosSplash01'
 import LottieView from 'lottie-react-native';
 import { TituloAmarelo, TituloBranco } from '../Textos/Textos.js';
 import { BotaoTransparente } from '../Botao/Botao.js';
+import { useNavigation } from '@react-navigation/native';
 
-export default function SplashInicial02(){
+export default function SplashInicial02(route){
+
 
   return(
     <>
@@ -17,7 +19,7 @@ export default function SplashInicial02(){
         colors={['#297b1e', '#174911']}
         style={estilo.gradienteVerde}>
         
-        <TituloBranco conteudo='É uma alegria ter você aqui!'/>
+        <TituloBranco conteudo={'É uma alegria ter você aqui!, '+ route.params.nome}/>
         <View>
           <TituloAmarelo conteudo='E aí, Partiu Grupo de Oração?' />
           <BotaoTransparente title='RUMBORA >'/>
