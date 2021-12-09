@@ -21,6 +21,11 @@ export default function TextosSplash01(){
     navigation.navigate('SplashInicial02');
   }
 
+  async function navegarParaProximaTelaSemNome(){
+    await AsyncStorage.setItem("id", "");
+    navigation.navigate('SplashInicial02');
+  }
+
   return(
     <>
       <TituloBranco conteudo='Bem vindo(a)!'/>
@@ -34,7 +39,7 @@ export default function TextosSplash01(){
           <BotaoConfirmacao title='OK' onPress={navegarParaProximaTela }/>
         </View>
        </View>
-      <BotaoTransparente title="NEEMM (NÃO) >"  onPress={navegarParaProximaTela} />
+      <BotaoTransparente title="NEEMM (NÃO) >"  onPress={navegarParaProximaTelaSemNome} />
       
     </>
   );

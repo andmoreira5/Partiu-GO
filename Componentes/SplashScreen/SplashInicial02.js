@@ -16,7 +16,10 @@ export default function SplashInicial02(){
 
    async function getData(){
     const response =  await AsyncStorage.getItem("id");
-    setValue(response);
+    if(response !== null){
+      setValue(response);
+    }
+    
   }
   
   return(
