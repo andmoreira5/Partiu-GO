@@ -7,6 +7,8 @@ import InputText from '../InputTexto/InputText';
 import { TextoComum, TituloBranco } from '../Textos/Textos';
 import estilo from './estilosSplash';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage  from '@react-native-async-storage/async-storage';
+
 
 export default function TextosSplash01(){
   const [nome, setNome] = useState("");
@@ -14,8 +16,9 @@ export default function TextosSplash01(){
 
   const navigation = useNavigation();
 
-  function navegarParaProximaTela(){
-    navigation.navigate('SplashInicial02', {nome: 'ASDF'});
+  async function navegarParaProximaTela(){
+    await AsyncStorage.setItem("id", nome);
+    navigation.navigate('SplashInicial02');
   }
 
   return(
