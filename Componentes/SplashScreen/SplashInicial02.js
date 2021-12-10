@@ -1,25 +1,24 @@
-import React , {useState} from 'react';
+import React  from 'react';
 import estilo from './estilosSplash.js';
 import {View} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
 import { TituloAmarelo, TituloBranco } from '../Textos/Textos.js';
 import { BotaoTransparente } from '../Botao/Botao.js';
-import AsyncStorage  from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
+import LerNomeUsuario from '../FuncoesLogicas/LerNomeUsuario.js';
+
 
 export default function SplashInicial02(){
-  const [value,setValue] = useState('pessoa não identificada');
+  const navigation = useNavigation();
 
-  React.useEffect(() => 
-    getData(), []
-  );
+  let value = LerNomeUsuario();
+  if(value===''){
+    value = 'pessoa não identificada';
+  }
 
-   async function getData(){
-    const response =  await AsyncStorage.getItem("id");
-    if(response !== null){
-      setValue(response);
-    }
-    
+  function navegarParaHome(){
+    navigation.navigate('Home');
   }
   
   return(
@@ -33,7 +32,7 @@ export default function SplashInicial02(){
         <TituloBranco conteudo={'É uma alegria ter você aqui, ' + value + '!'}/>
         <View>
           <TituloAmarelo conteudo='E aí, Partiu Grupo de Oração?' />
-          <BotaoTransparente title='RUMBORA >'/>
+          <BotaoTransparente title='RUMBORA >' onPress={navegarParaHome}/>
         </View>
       </LinearGradient>
     </>

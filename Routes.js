@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SplashInicial from './Componentes/SplashScreen/SplashInicial';
 import SplashInicial02 from './Componentes/SplashScreen/SplashInicial02';
+import Home from './Componentes/Home/Home';
 
 
 
@@ -17,6 +18,7 @@ const Routes = () => {
             }}>
                 <AppStack.Screen name="SplashInicial01" component={SplashInicial} />
                 <AppStack.Screen name="SplashInicial02" component={SplashInicial02} />
+                <AppStack.Screen name="Home" component={Home} />
             </AppStack.Navigator>
         </NavigationContainer>
     );
