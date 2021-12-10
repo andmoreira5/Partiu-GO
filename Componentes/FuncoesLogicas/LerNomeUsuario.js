@@ -4,6 +4,7 @@ import AsyncStorage  from '@react-native-async-storage/async-storage';
 
 export default function LerNomeUsuario(){
     const [value,setValue] = useState('');
+    
 
     React.useEffect(() => 
     getData(), []

@@ -13,6 +13,7 @@ export default function SplashInicial02(){
   const navigation = useNavigation();
 
   let value = LerNomeUsuario();
+  
   if(value===''){
     value = 'pessoa não identificada';
   }

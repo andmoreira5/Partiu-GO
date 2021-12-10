@@ -9,7 +9,7 @@ export default function lerHorarioDia(){
         if(hora>=6 && hora<12){
             result = [require('../../assets/img/manha.jpg'), 'Bom dia'];
         }else{
-            result = require('../../assets/img/tarde.jpg');
+            result = [require('../../assets/img/tarde.jpg'), 'Boa tarde'];
         }
     }
     return result;
