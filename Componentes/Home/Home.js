@@ -6,6 +6,7 @@ import LerNomeUsuario from "../FuncoesLogicas/LerNomeUsuario";
 import { TituloBranco } from "../Textos/Textos";
 import estilo from './estiloHome';
 
+
 export default function Home(){
 
     const [img, frase] = lerHorarioDia();
@@ -15,6 +16,7 @@ export default function Home(){
     }else{
         nomeUsuario = ', '+nomeUsuario+'!';
     }
+
   
     return(
         <View style={estilo.container}>
