@@ -21,6 +21,7 @@ const estiloTextos = StyleSheet.create({
         color: '#4d4d4d',
     },
     textoComumLaranja:{
+        fontSize: 16,
         color: '#ef5a34',
     }
 });

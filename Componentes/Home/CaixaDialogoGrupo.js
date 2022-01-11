@@ -1,13 +1,16 @@
 //É o quadro branco informando se tem grupo hoje ou não
 
-import React from "react";
+import React, {useState} from "react";
 import { View } from "react-native";
-import { grupos } from "../Dados/Dados";
+import { Icon } from "react-native-elements/dist/icons/Icon";
 import identificarGrupo from "../FuncoesLogicas/IdentificarGrupo";
-import { TextoComumCinza } from "../Textos/Textos";
+import { TextoComumCinza, TextoComumLaranja } from "../Textos/Textos";
+import estilo from './estiloCaixaDialogo';
 
 export default function CaixaDialogoGrupo(){
     let titulo = '', conteudo=[];
+
+    var [detalhes, setDetalhes] = useState('');
 
     const gruposDeHoje = identificarGrupo();
     if(gruposDeHoje.length>0){
@@ -19,14 +22,22 @@ export default function CaixaDialogoGrupo(){
     
     function retornarConteudo(grupo){
         conteudo.push(
-            <TextoComumCinza conteudo={grupo.nome}/>
+            <TextoComumCinza conteudo={grupo.nome + '\n\n' + grupo.horario + ' na '+ grupo.local 
+        + '\n' + grupo.endereco}/>
         )
     }
 
+    
 
     return(
-        <View>
-
+        <View style={estilo.container}>
+            <View style={estilo.primeiraLinha}>
+                <Icon style={estilo.icon} name="notifications" color={'#ef5a34'} />
+                <TextoComumLaranja conteudo={titulo} />
+            </View>
+            <View style={estilo.conteudo}>
+            {conteudo}
+            </View>
         </View>
     );
 }

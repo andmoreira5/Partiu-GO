@@ -5,6 +5,7 @@ import lerHorarioDia from '../FuncoesLogicas/LerHorarioDia';
 import LerNomeUsuario from "../FuncoesLogicas/LerNomeUsuario";
 import { TituloBranco } from "../Textos/Textos";
 import estilo from './estiloHome';
+import CaixaDialogoGrupo from './CaixaDialogoGrupo';
 
 
 export default function Home(){
@@ -26,6 +27,8 @@ export default function Home(){
                 <TituloBranco 
                  conteudo={frase+nomeUsuario}
                  style={estilo.titulo}/>
+
+                <CaixaDialogoGrupo />
             </ImageBackground>
         </View>
     );

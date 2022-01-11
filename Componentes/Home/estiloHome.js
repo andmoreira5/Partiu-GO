@@ -7,7 +7,7 @@ const estilo = StyleSheet.create({
       imageBackground: {
         flex: 1,
         resizeMode: "cover",
-        justifyContent: "center",
+        justifyContent: "space-around",
         alignItems: "center"
       },
       titulo: {

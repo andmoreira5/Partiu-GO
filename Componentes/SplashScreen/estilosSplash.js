@@ -25,8 +25,8 @@ const estilo = StyleSheet.create({
     justifyContent:'flex-end',
   },
   aviao:{
-    height: 400,
-    width: '100%'
+    height: 413,
+    width: '105%'
   },
   gradienteVerde:{
     height:400,
