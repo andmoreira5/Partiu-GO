@@ -19,7 +19,7 @@ export default function SplashInicial02(){
   }
 
   function navegarParaHome(){
-    navigation.navigate('Home');
+    navigation.navigate('Principal');
   }
   
   return(

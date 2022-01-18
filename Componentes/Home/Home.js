@@ -7,8 +7,11 @@ import { TituloBranco } from "../Textos/Textos";
 import estilo from './estiloHome';
 import CaixaDialogoGrupo from './CaixaDialogoGrupo';
 
+import { Icon } from 'react-native-elements';
+
 
 export default function Home(){
+
 
     const [img, frase] = lerHorarioDia();
     let nomeUsuario = LerNomeUsuario();

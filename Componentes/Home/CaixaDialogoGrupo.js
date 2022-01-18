@@ -23,7 +23,7 @@ export default function CaixaDialogoGrupo(){
     function retornarConteudo(grupo){
         conteudo.push(
             <TextoComumCinza conteudo={grupo.nome + '\n\n' + grupo.horario + ' na '+ grupo.local 
-        + '\n' + grupo.endereco}/>
+        + '\n' + grupo.endereco+'\n'} />
         )
     }
 
@@ -38,6 +38,7 @@ export default function CaixaDialogoGrupo(){
             <View style={estilo.conteudo}>
             {conteudo}
             </View>
+            
         </View>
     );
 }
