@@ -1,13 +1,14 @@
 //Primeira área de textos e botões.
 
 import React, {useState} from 'react';
-import { Text, View} from 'react-native';
+import { View} from 'react-native';
 import { BotaoConfirmacao, BotaoTransparente } from '../Botao/Botao';
 import InputText from '../InputTexto/InputText';
 import { TextoComum, TituloBranco } from '../Textos/Textos';
 import estilo from './estilosSplash';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage  from '@react-native-async-storage/async-storage';
+import executar from '../FuncoesLogicas/GravarDadosGrupo';
+import { gravarDado } from '../FuncoesLogicas/LerDados';
 
 
 export default function TextosSplash01(){
@@ -17,12 +18,14 @@ export default function TextosSplash01(){
   const navigation = useNavigation();
 
   async function navegarParaProximaTela(){
-    await AsyncStorage.setItem("id", nome);
+    gravarDado("id", nome);
+    executar();
     navigation.navigate('SplashInicial02');
   }
 
   async function navegarParaProximaTelaSemNome(){
-    await AsyncStorage.setItem("id", "");
+    gravarDado("id", "");
+    executar();
     navigation.navigate('SplashInicial02');
   }
 

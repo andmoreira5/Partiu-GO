@@ -1,17 +1,16 @@
-//lê o nome do usuário salvo no dispositivo caso o usuario tenha inserido
+//função responsável por ler e gravar dados no async storage
 import React, {useState} from "react";
 import AsyncStorage  from '@react-native-async-storage/async-storage';
 
-export default function LerNomeUsuario(){
+export function lerDado(chave){
     const [value,setValue] = useState('');
     
-
     React.useEffect(() => 
     getData(), []
   );
 
    async function getData(){
-    const response =  await AsyncStorage.getItem("id");
+    const response =  await AsyncStorage.getItem(chave);
     if(response !== null){
       setValue(response);
     }
@@ -19,4 +18,8 @@ export default function LerNomeUsuario(){
 
   return value;
 
+}
+
+export async function gravarDado(chave, conteudo){
+  await AsyncStorage.setItem(chave, conteudo);
 }

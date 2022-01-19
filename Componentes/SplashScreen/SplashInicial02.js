@@ -6,13 +6,13 @@ import LottieView from 'lottie-react-native';
 import { TituloAmarelo, TituloBranco } from '../Textos/Textos.js';
 import { BotaoTransparente } from '../Botao/Botao.js';
 import { useNavigation } from '@react-navigation/native';
-import LerNomeUsuario from '../FuncoesLogicas/LerNomeUsuario.js';
+import { lerDado } from '../FuncoesLogicas/LerDados.js';
 
 
 export default function SplashInicial02(){
   const navigation = useNavigation();
 
-  let value = LerNomeUsuario();
+  let value = lerDado('id');
   
   if(value===''){
     value = 'pessoa não identificada';

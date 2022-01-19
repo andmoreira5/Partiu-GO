@@ -2,19 +2,17 @@
 import React from "react";
 import {ImageBackground, View} from 'react-native';
 import lerHorarioDia from '../FuncoesLogicas/LerHorarioDia';
-import LerNomeUsuario from "../FuncoesLogicas/LerNomeUsuario";
 import { TituloBranco } from "../Textos/Textos";
 import estilo from './estiloHome';
 import CaixaDialogoGrupo from './CaixaDialogoGrupo';
-
-import { Icon } from 'react-native-elements';
+import { lerDado } from "../FuncoesLogicas/LerDados";
 
 
 export default function Home(){
 
 
     const [img, frase] = lerHorarioDia();
-    let nomeUsuario = LerNomeUsuario();
+    let nomeUsuario = lerDado('id');
     if(nomeUsuario===''){ //formatando a exibição.
         nomeUsuario = '!';
     }else{
