@@ -1,57 +1,57 @@
-module.exports.conselho = [
+module.exports = [
     {
-        nome:'Daniele Oliveira',
-        funcao: 'Coordenadora Geral',
+        titulo:'Daniele Oliveira',
+        descricao: 'Coordenadora Geral',
         img: require('../../assets/img/dan.jpg')
     },
     {
-        nome:'Anderson Moreira',
-        funcao: 'Secretário',
+        titulo:'Anderson Moreira',
+        descricao: 'Secretário',
         img: require('../../assets/img/a.jpg')
     },
     {
-        nome:'Jessivânia Rodrigues',
-        funcao: 'Coordenadora G.O. Nossa Senhora das Graças',
+        titulo:'Jessivânia Rodrigues',
+        descricao: 'Coordenadora G.O. Nossa Senhora das Graças',
         img: require('../../assets/img/dan.jpg')
     },
     {
-        nome:'Ana Cláudia',
-        funcao: 'Coordenadora G.O. O Amor faz Milagres',
+        titulo:'Ana Cláudia',
+        descricao: 'Coordenadora G.O. O Amor faz Milagres',
         img: require('../../assets/img/a.jpg')
     },
     {
-        nome:'Deza',
-        funcao: 'Coordenadora G.O. Nova Aliança Israel',
+        titulo:'Deza',
+        descricao: 'Coordenadora G.O. Nova Aliança Israel',
         img: require('../../assets/img/dan.jpg')
     },
     {
-        nome:'Márcia',
-        funcao: 'Coordenadora G.O. Perseverantes no Amor de Deus',
+        titulo:'Márcia',
+        descricao: 'Coordenadora G.O. Perseverantes no Amor de Deus',
         img: require('../../assets/img/a.jpg')
     },
     {
-        nome:'Cícero Dias',
-        funcao: 'Coordenador G.O. Resgatados pelo Espírito Santo',
+        titulo:'Cícero Dias',
+        descricao: 'Coordenador G.O. Resgatados pelo Espírito Santo',
         img: require('../../assets/img/dan.jpg')
     },
     {
-        nome:'Roberth Lelael',
-        funcao: 'Coordenador Ministério de Comunicação Social',
+        titulo:'Roberth Lelael',
+        descricao: 'Coordenador Ministério de Comunicação Social',
         img: require('../../assets/img/a.jpg')
     },
     {
-        nome:'Antônio Levi',
-        funcao: 'Coordenador Ministério de Música e Artes',
+        titulo:'Antônio Levi',
+        descricao: 'Coordenador Ministério de Música e Artes',
         img: require('../../assets/img/dan.jpg')
     },
     {
-        nome:'João',
-        funcao: 'Coordenador Ministério de Intercessão',
+        titulo:'João',
+        descricao: 'Coordenador Ministério de Intercessão',
         img: require('../../assets/img/a.jpg')
     },
     {
-        nome:'Alice',
-        funcao: 'Coordenadora Ministério Jovem',
+        titulo:'Alice',
+        descricao: 'Coordenadora Ministério Jovem',
         img: require('../../assets/img/dan.jpg')
     },
 ];
