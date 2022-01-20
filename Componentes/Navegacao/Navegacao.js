@@ -15,7 +15,7 @@ export default function Navegacao(){
             <Drawer.Navigator initialRouteName='Home'>
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Conselho" component={() => <Conselho titulo={"Conselho da Cidade"} dados={dadosConselho}/>} />
-                <Drawer.Screen name="Formações" component={() => <Conselho titulo={"Formações"} dados={dadosFormacoes}/>} />
+                <Drawer.Screen name="Formações" component={() => <Conselho titulo={"Processo Formativo"} dados={dadosFormacoes}/>} />
             </Drawer.Navigator>
         </NavigationContainer>
     );

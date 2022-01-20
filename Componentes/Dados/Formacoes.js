@@ -1,5 +1,8 @@
 module.exports = [
-  
+
+    {
+        grupo:'Módulo Querigmático',
+        content:[
             {
                 titulo:'Seminário de Vida no Espírito Santo',
                 descricao:'Início da caminhada formativa por meio da Palavra de Deus.',
@@ -15,8 +18,11 @@ module.exports = [
                 descricao:'Final de semana de oficinas para entender e usar os dons e carismas.',
                 img: require('../../assets/img/apostilas/introducaoDons.jpg')
             },
-       
-   
+        ]
+    },
+    {
+        grupo:'Módulo Básico',
+        content:[
             {
                 titulo:'Identidade',
                 descricao:'Aprofundamento sobre o que é a Renovação Carismática Católica.',
@@ -47,5 +53,7 @@ module.exports = [
                 descricao:'Como o Espírito Santo atuou e atua na Igreja e a RCC dentro do contexto eclesial.',
                 img: require('../../assets/img/logo.jpg')
             }
-       
+        ]
+    }
+            
 ]
