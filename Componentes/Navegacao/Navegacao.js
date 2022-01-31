@@ -5,7 +5,9 @@ import Home from '../Home/Home';
 import Conselho from '../Conselho/Conselho';
 import dadosConselho from '../Dados/Conselho';
 import dadosFormacoes from '../Dados/Formacoes'
+import dadosCalendario from '../Dados/Calendario'
 import DadosComFoto from '../Conselho/DadosComFoto';
+import DadosCalendario from '../Conselho/DadosCalendario';
 
 export default function Navegacao(){
     
@@ -17,6 +19,7 @@ export default function Navegacao(){
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Conselho" component={() => <Conselho titulo={"Conselho da Cidade"} dados={<DadosComFoto dados={dadosConselho} />}/>} />
                 <Drawer.Screen name="Formações" component={() => <Conselho titulo={"Processo Formativo"} dados={<DadosComFoto dados={dadosFormacoes}/>}/>} />
+                <Drawer.Screen name="Calendário" component={() => <Conselho titulo="Calendário" dados={<DadosCalendario dados={dadosCalendario}/>}/>}/>
             </Drawer.Navigator>
         </NavigationContainer>
     );

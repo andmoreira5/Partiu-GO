@@ -1,8 +1,9 @@
 import {StyleSheet} from 'react-native';
+import { cores } from '../Configuracoes/Configuracoes';
 
 const estiloTextos = StyleSheet.create({
   tituloAmarelo:{
-      color: '#f2e3ba',
+      color: cores.amarelo,
       fontSize:25,
       fontWeight: 'bold',
       marginBottom:30,
@@ -18,11 +19,11 @@ const estiloTextos = StyleSheet.create({
     },
     textoComumCinza:{
         fontSize: 16,
-        color: '#4d4d4d',
+        color: cores.cinza,
     },
     textoComumLaranja:{
         fontSize: 16,
-        color: '#ef5a34',
+        color: cores.laranja,
     }
 });
 

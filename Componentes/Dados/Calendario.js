@@ -10,7 +10,7 @@ module.exports = [
         ]
     },
     {
-        grupo:'Março',
+        mes:'Março',
         content:[
             {
                 titulo:'10 a 19',
@@ -32,7 +32,7 @@ module.exports = [
         ]
     },
     {
-        grupo:'Maio',
+        mes:'Maio',
         content:[
             {
                 titulo:'13 a 15',
@@ -45,7 +45,7 @@ module.exports = [
         ]
     },
     {
-        grupo:'Junho',
+        mes:'Junho',
         content:[
             {
                 titulo:'01 a 04',
@@ -85,7 +85,7 @@ module.exports = [
         ]
     },
     {
-        grupo:'Outubro',
+        mes:'Outubro',
         content:[
             {
                 titulo:'12',
@@ -102,7 +102,7 @@ module.exports = [
         content:[
             {
                 titulo:'15 a 19',
-                descricao:'Assembleia Eletiva do Conselho Nacional',
+                descricao:'Jesus no Litoral',
             }
         ]
     },
