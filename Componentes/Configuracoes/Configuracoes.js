@@ -17,5 +17,6 @@ export function confFontes(){
 export const cores= {
     laranja: '#ef5a34',
     cinza : '#4d4d4d',
-    amarelo: '#f2e3ba'
+    amarelo: '#f2e3ba',
+    marrom: '#62514d'
 }

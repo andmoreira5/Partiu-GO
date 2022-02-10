@@ -42,6 +42,14 @@ const estilo = StyleSheet.create({
     textAlign: 'center',
     backgroundColor: 'white'
   },
+  containerBoasVindas:{
+    flex:1,
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    
+    padding:20
+  },
+  
 });
 
 export default estilo;

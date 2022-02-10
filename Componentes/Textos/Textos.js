@@ -33,3 +33,9 @@ export function TextoComumLaranja(props){
         <Text style={estiloTextos.textoComumLaranja} >{props.conteudo}</Text>
     );
 }
+
+export function TituloSplash(props){
+    return(
+        <Text style={estiloTextos.tituloSplash} >{props.conteudo}</Text>
+    );
+}

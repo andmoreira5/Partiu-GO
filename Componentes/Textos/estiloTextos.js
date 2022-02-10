@@ -24,6 +24,12 @@ const estiloTextos = StyleSheet.create({
     textoComumLaranja:{
         fontSize: 16,
         color: cores.laranja,
+    },
+    tituloSplash:{
+        fontSize:26,
+        fontWeight: 'bold',
+        color: cores.marrom,
+        textAlign:'center'
     }
 });
 
