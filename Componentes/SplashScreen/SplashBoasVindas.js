@@ -11,6 +11,7 @@ import gql from 'graphql-tag'
 import {Query } from 'react-apollo'
 import estilo from './estilosSplash'
 import { TituloSplash } from '../Textos/Textos'
+import { lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
 
 
 
@@ -50,6 +51,28 @@ const BUSCA_DE_DATA = gql`
 
 `
 
+
+const BUSCA = gql`
+query ($dia:String) {
+	temas (filters:{diaDoGrupo:{eq:$dia}}) {
+    data  {
+      attributes {
+        tema
+        diaDoGrupo
+        grupo{
+          data{
+            attributes{
+              nome
+              endereco
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+
+const dia = lerDiaDeHoje();
 const makeApolloClient =  () => {
   const link = new HttpLink( {
     uri: 'http://192.168.0.194:1337/graphql',
@@ -96,13 +119,13 @@ export default class SplashBoasVindas extends React.Component{
             <TituloSplash>Carregando...</TituloSplash>
             <ActivityIndicator size="large" color="#007e3e" />
             
-            <Query query={BUSCA_DE_DATA}>
+            <Query query={BUSCA} variables={{dia}}>
               {
                 ({data, error, loading})   => {
                   if(loading) 
     
                   if(!data) return <View></View>
-                  return <View>{this.props.navigation.navigate('TelaOla')}</View>
+                  return <View>{this.props.navigation.navigate('TelaOla', {dados:data})}</View>
                    
                 }
               }

@@ -1,15 +1,18 @@
 //tela inicial. A tela principal do aplicativo.
-import React from "react";
+import React , {useContext }from "react";
 import {ImageBackground, View} from 'react-native';
 import lerHorarioDia from '../FuncoesLogicas/LerHorarioDia';
 import { TituloBranco } from "../Textos/Textos";
 import estilo from './estiloHome';
 import CaixaDialogoGrupo from './CaixaDialogoGrupo';
 import { lerDado } from "../FuncoesLogicas/LerDados";
+import UserContext from "../SplashScreen/Context";
+
 
 
 export default function Home(props){
 
+    
 
     const [img, frase] = lerHorarioDia();
     let nomeUsuario = lerDado('id');

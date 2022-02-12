@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigation } from '@react-navigation/native';
 import {View, Image} from 'react-native'
 import LottieView from 'lottie-react-native';
 import estilo from './estilosSplash'
 import { TituloSplash } from "../Textos/Textos";
 import { lerDado } from "../FuncoesLogicas/LerDados";
+import UserContext from "./Context";
 
-export default function TelaOla(){
+const TelaOla = ({route}) => {
+
+    const {setState, state} = useContext(UserContext)
+    alert(route.params.dados.temas.data[0].attributes.tema)
+
     const navigation = useNavigation();
     let nn='Principal'
     if(lerDado('id')==''){
@@ -27,3 +32,5 @@ export default function TelaOla(){
         
     )
 }
+
+export default TelaOla
