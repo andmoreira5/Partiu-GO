@@ -14,3 +14,17 @@ export default function lerHorarioDia(){
     }
     return result;
 }
+
+export function lerDiaDeHoje(){
+    let dataAtual = new Date(); 
+    return (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
+    
+}
+
+
+function adicionaZero(numero){
+    if (numero <= 9) 
+        return "0" + numero;
+    else
+        return numero; 
+}

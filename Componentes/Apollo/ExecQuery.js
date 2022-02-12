@@ -2,9 +2,12 @@
 import {Query } from 'react-apollo'
 import React from 'react';
 import {View, Text} from 'react-native'
+import { useNavigation } from '@react-navigation/native';
+import Home from '../Home/Home';
 
 export default function Exec(props){
 
+    const navigation = useNavigation();
 
     function ler(dados){
         var conteudo = 'nome: ';
@@ -17,12 +20,12 @@ export default function Exec(props){
         <Query query={props.query}>
         {
         ({data, error, loading})   => {
-            if(loading) return <View><Text>Loading</Text></View>
-
-            if(!data.objs) return <View><Text>{"\n\nDados não carregados"}</Text></View>
-            return <View><Text>{"\n\nDados carregados"}</Text>
-            {data.objs.data.map(a => ler(a))}
-            </View>
+            if(!loading){
+                if(data) {
+                    setTimeout(() => {navigation.navigate(Home, {dados:data})}, 3000);
+                }
+            } 
+            
         }
         }
         </Query>

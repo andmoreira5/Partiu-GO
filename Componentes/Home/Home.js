@@ -8,12 +8,12 @@ import CaixaDialogoGrupo from './CaixaDialogoGrupo';
 import { lerDado } from "../FuncoesLogicas/LerDados";
 
 
-export default function Home(){
+export default function Home(props){
 
 
     const [img, frase] = lerHorarioDia();
     let nomeUsuario = lerDado('id');
-    if(nomeUsuario===''){ //formatando a exibição.
+    if(nomeUsuario==='' || nomeUsuario==='$0'){ //formatando a exibição.
         nomeUsuario = '!';
     }else{
         nomeUsuario = ', '+nomeUsuario+'!';

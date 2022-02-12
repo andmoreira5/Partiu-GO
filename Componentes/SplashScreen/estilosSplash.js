@@ -44,11 +44,16 @@ const estilo = StyleSheet.create({
   },
   containerBoasVindas:{
     flex:1,
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignItems: 'center',
     
     padding:20
   },
+  logoBoasVindas:{
+    resizeMode: 'contain',
+    width:'70%',
+    height:200
+  }
   
 });
 

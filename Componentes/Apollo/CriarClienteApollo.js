@@ -5,7 +5,7 @@ import {ApolloClient} from 'apollo-client'
 
 export default criarApolloClient =  () => {
     const link = new HttpLink( {
-      uri: 'http://10.0.0.108:1337/graphql',
+      uri: 'http://192.168.0.194:1337/graphql',
       //headers nao colocados
     })
   
