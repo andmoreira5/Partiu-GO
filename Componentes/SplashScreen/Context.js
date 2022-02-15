@@ -2,8 +2,8 @@ import React, {createContext, useState} from 'react';
 
 const DEFAULT_VALUE = {
   state:{
-    name:"",
-    dados:{}
+    idGrupo:0,
+    tema:""
   },
   setState: () => {}
 }
