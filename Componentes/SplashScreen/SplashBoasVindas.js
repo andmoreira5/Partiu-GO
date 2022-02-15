@@ -40,7 +40,9 @@ const BUSCA_DE_DATA = gql`
           data{
             attributes{
               nome
+              local
               endereco
+              horario
             }
           }
         }
@@ -63,7 +65,9 @@ query ($dia:String) {
           data{
             attributes{
               nome
+              local
               endereco
+              horario
             }
           }
         }
@@ -75,7 +79,7 @@ query ($dia:String) {
 const dia = lerDiaDeHoje();
 const makeApolloClient =  () => {
   const link = new HttpLink( {
-    uri: 'http://192.168.0.194:1337/graphql',
+    uri: 'http://10.0.0.116:1337/graphql',
     //headers nao colocados
   })
 
