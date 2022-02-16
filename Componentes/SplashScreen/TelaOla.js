@@ -9,11 +9,13 @@ import UserContext from "./Context";
 
 const TelaOla = ({route}) => {
 
-    let dadosFormatados = ''
+    let dadosFormatados = {}
+    let cont = 0
 
     const {setState, state} = useContext(UserContext)
 
     //alert(route.params.dados.temas.data[0].attributes.tema)
+
 
     function verifica(el){
         let content = el.attributes.grupo.data.attributes.nome
@@ -21,10 +23,12 @@ const TelaOla = ({route}) => {
         content = content.concat('\nLOCAL: ' + el.attributes.grupo.data.attributes.local)
         content = content.concat('\nENDEREÇO: '+ el.attributes.grupo.data.attributes.endereco)
         content = content.concat('\nHORÁRIO: '+  el.attributes.grupo.data.attributes.horario)
-        dadosFormatados = content
+        dadosFormatados[cont] = content
+        cont++
     }
 
     route.params.dados.temas.data.map((el) => verifica(el))
+    state.temas = dadosFormatados;
 
     const navigation = useNavigation();
     let nn='Principal'
@@ -32,7 +36,7 @@ const TelaOla = ({route}) => {
         nn = 'SplashInicial01'
     }
     setTimeout( () => {
-        navigation.navigate(nn, {dados:dadosFormatados})
+        navigation.navigate(nn)
      },6000);
     
     return(

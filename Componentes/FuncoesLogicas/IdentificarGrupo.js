@@ -8,7 +8,6 @@ let contador=0;
 
 export default function identificarGrupo(){
     grupos.grupos.map(grupo => verificar(grupo))
-    console.log(gruposDeHoje)
     return gruposDeHoje;
 }
 
