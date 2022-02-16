@@ -1,4 +1,4 @@
-module.exports.grupos = [
+module.exports = [
     {
         nome:'Nossa Senhora das Graças',
         local: 'Capela Santa Francisca',
@@ -12,7 +12,7 @@ module.exports.grupos = [
         local: 'Capela São Francisco',
         endereco: 'Av. Coronel José Dantas - Centro',
         horario: '18h30',
-        diaDaSemana: 5,
+        diaDaSemana: 3,
         id:2
     },
     {
@@ -28,7 +28,7 @@ module.exports.grupos = [
         local: 'Capela Santo Antônio',
         endereco: 'Distrito Missão Nova',
         horario:'18h30',
-        diaDaSemana: 2,
+        diaDaSemana:3,
         id:4
     },
     {

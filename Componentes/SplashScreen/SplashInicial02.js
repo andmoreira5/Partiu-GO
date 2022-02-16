@@ -1,4 +1,4 @@
-import React  from 'react';
+import React, { useContext }  from 'react';
 import estilo from './estilosSplash.js';
 import {View} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -7,16 +7,18 @@ import { TituloAmarelo, TituloBranco } from '../Textos/Textos.js';
 import { BotaoTransparente } from '../Botao/Botao.js';
 import { useNavigation } from '@react-navigation/native';
 import { gravarDado, lerDado } from '../FuncoesLogicas/LerDados.js';
+import UserContext from './Context.js';
 
 
 export default function SplashInicial02(){
   const navigation = useNavigation();
 
-  let value = lerDado('id');
+  const {setState, state} = useContext(UserContext)
+
+  let value = state.nomeUsuario;
   
   if(value==='' || value==='$0'){
     value = 'pessoa não identificada';
-    gravarDado('id', '$0')
   }
 
   function navegarParaHome(){

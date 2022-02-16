@@ -6,33 +6,17 @@ import estilo from './estilosSplash'
 import { TituloSplash } from "../Textos/Textos";
 import { lerDado } from "../FuncoesLogicas/LerDados";
 import UserContext from "./Context";
+import { OrganizarDadosServidor } from "../FuncoesLogicas/TratarDadosServidor";
 
 const TelaOla = ({route}) => {
 
-    let dadosFormatados = {}
-    let cont = 0
-
     const {setState, state} = useContext(UserContext)
 
-    //alert(route.params.dados.temas.data[0].attributes.tema)
-
-
-    function verifica(el){
-        let content = el.attributes.grupo.data.attributes.nome
-        content = content.concat('\nTEMA: ' +  el.attributes.tema)
-        content = content.concat('\nLOCAL: ' + el.attributes.grupo.data.attributes.local)
-        content = content.concat('\nENDEREÇO: '+ el.attributes.grupo.data.attributes.endereco)
-        content = content.concat('\nHORÁRIO: '+  el.attributes.grupo.data.attributes.horario)
-        dadosFormatados[cont] = content
-        cont++
-    }
-
-    route.params.dados.temas.data.map((el) => verifica(el))
-    state.temas = dadosFormatados;
+    OrganizarDadosServidor(state, route.params.dados.temas)
 
     const navigation = useNavigation();
     let nn='Principal'
-    if(lerDado('id')==''){
+    if(state.nomeUsuario===''){
         nn = 'SplashInicial01'
     }
     setTimeout( () => {

@@ -1,7 +1,7 @@
 //Essa é a primeira tela que aparece no aplicativo sendo primeira instalação ou não
 //Aqui também faremos a conexão com o servidor pra ver se tem dado novo.
 
-import React, { createContext } from 'react'
+import React, { createContext, useContext } from 'react'
 import { View, Text , Image, ActivityIndicator} from 'react-native'
 import {HttpLink} from 'apollo-link-http'
 import {ApolloClient} from 'apollo-client'
@@ -12,6 +12,8 @@ import {Query } from 'react-apollo'
 import estilo from './estilosSplash'
 import { TituloSplash } from '../Textos/Textos'
 import { lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
+import UserContext from './Context'
+import { lerDado } from '../FuncoesLogicas/LerDados'
 
 
 
@@ -98,26 +100,37 @@ const makeApolloClient =  () => {
 
 export default class SplashBoasVindas extends React.Component{
 
+  static contextType = UserContext
+
+
+
     state = {
         client: null,
-        ir:false
       }
     
       async componentDidMount(){
+
+        
+
         const client = makeApolloClient()
         this.setState({
           client
         })
-        const Context = createContext('ler');
+
+        
+        
+        
     }
     
     
       render(){
+        
         if(!this.state.client){
           return <View><Text>Deu erro</Text></View>
         }
         
         return <ApolloProvider client={this.state.client}>
+          
           <View style={estilo.containerBoasVindas}>
             <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')} />
             <TituloSplash>Carregando...</TituloSplash>
@@ -126,6 +139,8 @@ export default class SplashBoasVindas extends React.Component{
             <Query query={BUSCA} variables={{dia}}>
               {
                 ({data, error, loading})   => {
+                  const {setState, state} = this.context
+                  state.nomeUsuario = lerDado('id')
                   if(loading) 
     
                   if(!data) return <View></View>

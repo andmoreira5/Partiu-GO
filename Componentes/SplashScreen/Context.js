@@ -2,7 +2,8 @@ import React, {createContext, useState} from 'react';
 
 const DEFAULT_VALUE = {
   state:{
-    temas:{},
+    temas:[],
+    nomeUsuario:'',
   },
   setState: () => {}
 }

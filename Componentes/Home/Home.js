@@ -1,5 +1,5 @@
 //tela inicial. A tela principal do aplicativo.
-import React from "react";
+import React, { useContext } from "react";
 import {ImageBackground, View} from 'react-native';
 import lerHorarioDia from '../FuncoesLogicas/LerHorarioDia';
 import { TituloBranco } from "../Textos/Textos";
@@ -12,13 +12,15 @@ import UserContext from "../SplashScreen/Context";
 
 export default function Home(){
 
+    const {setState, state} = useContext(UserContext)
+
 
     const [img, frase] = lerHorarioDia();
-    let nomeUsuario = lerDado('id');
-    if(nomeUsuario==='' || nomeUsuario==='$0'){ //formatando a exibição.
-        nomeUsuario = '!';
+    let nomeDoUsuario = state.nomeUsuario;
+    if(nomeDoUsuario==='' || nomeDoUsuario==='$0'){ //formatando a exibição.
+        nomeDoUsuario = '!';
     }else{
-        nomeUsuario = ', '+nomeUsuario+'!';
+        nomeDoUsuario = ', '+nomeDoUsuario+'!';
     }
 
   
@@ -28,7 +30,7 @@ export default function Home(){
             source={img} 
             style={estilo.imageBackground}>
                 <TituloBranco 
-                 conteudo={frase+nomeUsuario}
+                 conteudo={frase+nomeDoUsuario}
                  style={estilo.titulo}/>
 
                 <CaixaDialogoGrupo />
