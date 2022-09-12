@@ -2,11 +2,10 @@
 //Se não tivermos dados do servidor, ele faz uma busca local
 
 import {useContext} from 'react';
-import UserContext from '../SplashScreen/Context';
 import grupos from '../Dados/Dados'
 const hoje = new Date().getDay();
 let conteudo=[], titulo="HOJE NÃO TEM GRUPO DE ORAÇÃO";
-let dadosFormatadosServidor = []
+import { Context } from '../Contexto'
 
 
 //verificarGrupo é função interna e faz a varredura de dados locais verificando se tem grupo hoje
@@ -32,11 +31,12 @@ function verificar(grupo){
 //essa é a função chamada no componente CaixaDialogoGrupo. 
 //ela vai trabalhar os dados a serem exibidos no componente
 export default function TratarDados(){ 
-    const {setState, state} = useContext(UserContext)
-    if(state.temas[0]===undefined){//se não vieram temas do servidor, então vou fazer verificação local
+    const {temas} = useContext(Context)
+    console.log('tt ' + temas)
+    if(temas.length==0){//se não vieram temas do servidor, então vou fazer verificação local
         return verificarGrupo();
     }else{
-        return {titulo:'HOJE TEM GRUPO DE ORAÇÃO', conteudo:state.temas}
+        return {titulo:'HOJE TEM GRUPO DE ORAÇÃO', conteudo:temas}
     }
 }
 

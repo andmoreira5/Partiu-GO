@@ -6,19 +6,16 @@ import LottieView from 'lottie-react-native';
 import { TituloAmarelo, TituloBranco } from '../Textos/Textos.js';
 import { BotaoTransparente } from '../Botao/Botao.js';
 import { useNavigation } from '@react-navigation/native';
-import { gravarDado, lerDado } from '../FuncoesLogicas/LerDados.js';
-import UserContext from './Context.js';
+import { Context } from '../Contexto'
 
 
 export default function SplashInicial02(){
-  const navigation = useNavigation();
+  const {nomeUsuario} = useContext(Context)
+  const navigation = useNavigation()
+  let nomeParaMostrar = nomeUsuario
 
-  const {setState, state} = useContext(UserContext)
-
-  let value = state.nomeUsuario;
-  
-  if(value==='' || value==='$0'){
-    value = 'pessoa não identificada';
+  if(nomeUsuario==='' || nomeUsuario==='$0'){
+    nomeParaMostrar = 'pessoa não identificada';
   }
 
   function navegarParaHome(){
@@ -33,7 +30,7 @@ export default function SplashInicial02(){
         colors={['#297b1e', '#174911']}
         style={estilo.gradienteVerde}>
         
-        <TituloBranco conteudo={'É uma alegria ter você aqui, ' + value + '!'}/>
+        <TituloBranco conteudo={'É uma alegria ter você aqui, ' + nomeParaMostrar + '!'}/>
         <View>
           <TituloAmarelo conteudo='E aí, Partiu Grupo de Oração?' />
           <BotaoTransparente title='RUMBORA >' onPress={navegarParaHome}/>

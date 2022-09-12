@@ -1,159 +1,76 @@
 //Essa é a primeira tela que aparece no aplicativo sendo primeira instalação ou não
 //Aqui também faremos a conexão com o servidor pra ver se tem dado novo.
 
-import React, { createContext, useContext } from 'react'
-import { View, Text , Image, ActivityIndicator} from 'react-native'
-import {HttpLink} from 'apollo-link-http'
-import {ApolloClient} from 'apollo-client'
-import {InMemoryCache} from 'apollo-cache-inmemory'
-import {ApolloProvider} from 'react-apollo'
-import gql from 'graphql-tag' 
-import {Query } from 'react-apollo'
+import React, { useEffect, useContext } from 'react'
+import { View, Image, ActivityIndicator} from 'react-native'
 import estilo from './estilosSplash'
 import { TituloSplash } from '../Textos/Textos'
+import { Context } from '../Contexto'
+import urlServidor from '../Servidor'
 import { lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
-import UserContext from './Context'
+import { buscarTemas } from '../Dados/Queries'
+import { useNavigation } from '@react-navigation/native';
 import { lerDado } from '../FuncoesLogicas/LerDados'
+import LottieView from 'lottie-react-native';
 
 
+export default function SplashBoasVindas (){
+  const {setTemas, setNomeUsuario} = useContext(Context)
+  const navigation = useNavigation()
+  const nome = lerDado('id')
+  setNomeUsuario(nome)
 
-const FETCH_TODOS = gql`
-  query{
-    objs{
-      data {
-        id
-        attributes{
-          nome
-          descricao
+  useEffect(()=>{
+    // console.log(lerDado('id')) //
+    
+    const buscarDados = async () => {
+      const response = await fetch(urlServidor, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: buscarTemas,
+          variables: {
+            day: lerDiaDeHoje(),
+          },
+        }),
+      })
+      const result = await response.json()
+      var temas = []
+        result.data.temas.data.map(item => {
+        var obj = {
+          tema: item.attributes.tema,
+          dia: item.attributes.dia,
+          grupo: item.attributes.grupo.data.attributes.nome
         }
+        temas.push(obj)
+      })
+      setTemas(temas)
+      let tela = 'Principal'
+      if(nome===''){
+        tela = 'SplashInicial01'
       }
+      setTimeout( () => {
+          navigation.navigate(tela)
+      },6000);
     }
-  }
-`
+    buscarDados()
+   
+  }, [])
 
-const BUSCA_DE_DATA = gql`
-  query {
-	temas  {
-    data  {
-      attributes {
-        tema
-        diaDoGrupo
-        grupo{
-          data{
-            attributes{
-              nome
-              local
-              endereco
-              horario
-            }
-          }
-        }
-      }
-    }
-  }
-}
+  // setTemas(temas)
 
-`
-
-
-const BUSCA = gql`
-query ($dia:String) {
-	temas (filters:{diaDoGrupo:{eq:$dia}}) {
-    data  {
-      attributes {
-        tema
-        diaDoGrupo
-        grupo{
-          data{
-            attributes{
-              nome
-              local
-              endereco
-              horario
-            }
-          }
-        }
-      }
-    }
-  }
-}`
-
-const dia = lerDiaDeHoje();
-const makeApolloClient =  () => {
-  const link = new HttpLink( {
-    uri: 'http://10.0.0.127:1337/graphql',
-    //headers nao colocados
-  })
-
-  const cache = new InMemoryCache();
-
-  const client = new ApolloClient({
-    link,
-    cache
-  })
-
-  return client
-
-}
-
-
-
-export default class SplashBoasVindas extends React.Component{
-
-  static contextType = UserContext
-
-
-
-    state = {
-        client: null,
-      }
-    
-      async componentDidMount(){
-
+  return(
+    <View style={estilo.containerBoasVindas}>
+      <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')} />
+      <TituloSplash>Carregando...</TituloSplash>
+      {/* <ActivityIndicator size="large" color={cores.verde} /> */}
+      <View >
+            <LottieView style={estilo.aviao}  source={require('../../assets/cat.json')} autoPlay loop />
+            <TituloSplash conteudo={'Olá!'} />
+        </View>
+    </View>
+  )
         
-
-        const client = makeApolloClient()
-        this.setState({
-          client
-        })
-
-        
-        
-        
-    }
-    
-    
-      render(){
-        
-        if(!this.state.client){
-          return <View><Text>Deu erro</Text></View>
-        }
-        
-        return <ApolloProvider client={this.state.client}>
-          
-          <View style={estilo.containerBoasVindas}>
-            <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')} />
-            <TituloSplash>Carregando...</TituloSplash>
-            <ActivityIndicator size="large" color="#007e3e" />
-            
-            <Query query={BUSCA} variables={{dia}}>
-              {
-                ({data, error, loading})   => {
-                  const {setState, state} = this.context
-                  state.nomeUsuario = lerDado('id')
-                  if(loading) 
-    
-                  if(!data) return <View></View>
-                  return <View>{this.props.navigation.navigate('TelaOla', {dados:data})}</View>
-                   
-                }
-              }
-            </Query>
-          </View>
-        </ApolloProvider>
-        
-      }
-    
-    
-    
 }

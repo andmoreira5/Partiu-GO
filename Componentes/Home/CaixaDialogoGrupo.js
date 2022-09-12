@@ -3,21 +3,21 @@
 import React, {useContext} from "react";
 import { View } from "react-native";
 import { Icon } from "react-native-elements/dist/icons/Icon";
-import { lerDado } from "../FuncoesLogicas/LerDados";
 import { TextoComumCinza, TextoComumLaranja } from "../Textos/Textos";
 import estilo from './estiloCaixaDialogo';
-import UserContext from "../SplashScreen/Context";
 import TratarDados from '../FuncoesLogicas/TratarDadosServidor'
+import { Context } from '../Contexto'
+
 
 export default function CaixaDialogoGrupo(){
+    const {temas} = useContext(Context)
+    let titulo = 'HOJE TEM GRUPO DE ORAÇÃO'
     
-    const {titulo, conteudo}  = TratarDados()
 
     function leitura(el){
         return <View style={estilo.itemTexto}>
-             <TextoComumCinza style={estilo.itemTexto} conteudo={el} />
+             {/* <TextoComumCinza style={estilo.itemTexto} conteudo={el} /> */}
         </View>
-       
     }
 
     
@@ -28,7 +28,7 @@ export default function CaixaDialogoGrupo(){
                 <TextoComumLaranja conteudo={titulo} />
             </View>
             <View style={estilo.conteudo}>
-            {conteudo.map((el) => leitura(el))}
+            {temas.map((el) => leitura(el))}
             </View>
             
         </View>

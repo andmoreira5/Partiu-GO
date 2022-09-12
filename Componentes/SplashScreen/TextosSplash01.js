@@ -9,24 +9,22 @@ import { TextoComum, TituloBranco } from '../Textos/Textos';
 import estilo from './estilosSplash';
 import { useNavigation } from '@react-navigation/native';
 import { gravarDado } from '../FuncoesLogicas/LerDados';
-import UserContext from './Context';
+import { Context } from '../Contexto'
 
 
 export default function TextosSplash01(){
-  const [nome, setNome] = useState("");
-
-  const {setState, state} = useContext(UserContext)
-
+  const [nomeDigitado, setNomeDigitado] = useState("");
+  const {setNomeUsuario} = useContext(Context)
   const navigation = useNavigation();
 
   async function navegarParaProximaTela(){
-    state.nomeUsuario = nome
-    gravarDado("id", nome);
+    setNomeUsuario(nomeDigitado)
+    gravarDado("id", nomeDigitado);
     navigation.navigate('SplashInicial02');
   }
 
   async function navegarParaProximaTelaSemNome(){
-    state.nomeUsuario = '$0'
+    setNomeUsuario('$0')
     gravarDado("id", "$0");
     navigation.navigate('SplashInicial02');
   }
@@ -38,8 +36,8 @@ export default function TextosSplash01(){
         <TextoComum conteudo='Você quer me dizer seu nome?' />
         <View style={estilo.alinhamentoHorizontal}>
           <InputText 
-            value={nome}
-            onChangeText={setNome}
+            value={nomeDigitado}
+            onChangeText={setNomeDigitado}
           />
           <BotaoConfirmacao title='OK' onPress={navegarParaProximaTela }/>
         </View>

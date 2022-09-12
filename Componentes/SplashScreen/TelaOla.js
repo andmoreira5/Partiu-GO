@@ -8,15 +8,15 @@ import { lerDado } from "../FuncoesLogicas/LerDados";
 import UserContext from "./Context";
 import { OrganizarDadosServidor } from "../FuncoesLogicas/TratarDadosServidor";
 
-const TelaOla = ({route}) => {
+export default function TelaOla () {
 
-    const {setState, state} = useContext(UserContext)
+    const {nomeUsuario} = useContext(UserContext)
 
-    OrganizarDadosServidor(state, route.params.dados.temas)
+    // OrganizarDadosServidor(state, route.params.dados.temas)
 
     const navigation = useNavigation();
     let nn='Principal'
-    if(state.nomeUsuario===''){
+    if(nomeUsuario===''){
         nn = 'SplashInicial01'
     }
     setTimeout( () => {
@@ -34,5 +34,3 @@ const TelaOla = ({route}) => {
         
     )
 }
-
-export default TelaOla

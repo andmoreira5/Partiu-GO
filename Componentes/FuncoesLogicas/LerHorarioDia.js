@@ -17,7 +17,7 @@ export default function lerHorarioDia(){
 
 export function lerDiaDeHoje(){
     let dataAtual = new Date(); 
-    return (adicionaZero(dataAtual.getDate().toString()) + "/" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "/" + dataAtual.getFullYear());
+    return (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "-" + adicionaZero(dataAtual.getDate().toString())+"");
     
 }
 
