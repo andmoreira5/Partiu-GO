@@ -42,7 +42,10 @@ export default function SplashBoasVindas (){
         var obj = {
           tema: item.attributes.tema,
           dia: item.attributes.dia,
-          grupo: item.attributes.grupo.data.attributes.nome
+          grupo: item.attributes.grupo.data.attributes.nome,
+          local: item.attributes.grupo.data.attributes.local,
+          endereco: item.attributes.grupo.data.attributes.endereco,
+          horario: item.attributes.grupo.data.attributes.horario
         }
         temas.push(obj)
       })

@@ -7,6 +7,8 @@ import { TextoComumCinza, TextoComumLaranja } from "../Textos/Textos";
 import estilo from './estiloCaixaDialogo';
 import TratarDados from '../FuncoesLogicas/TratarDadosServidor'
 import { Context } from '../Contexto'
+import { Text } from "react-native";
+import { color } from "react-native-reanimated";
 
 
 export default function CaixaDialogoGrupo(){
@@ -16,6 +18,24 @@ export default function CaixaDialogoGrupo(){
 
     function leitura(el){
         return <View style={estilo.itemTexto}>
+            <Text style={{color:'black', fontWeight:'bold', fontSize:17}}>{el.grupo.toUpperCase()}</Text>
+            <View style={{flexDirection: 'row'}}>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:17}}>Tema: </Text>
+                <Text style={{color:'black', fontSize:17}}>{el.tema}</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:17}}>Horário: </Text>
+                <Text style={{color:'black', fontSize:17}}>{el.horario}</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+                <Text style={{color:'black', fontWeight:'bold', fontSize:17}}>Local: </Text>
+                <Text style={{color:'black', fontSize:17}}>{el.local}</Text>
+            </View>
+            <View style={{flexDirection: 'row', width:'70%'}}>
+                <Text style={{color:'black', fontSize:17, fontWeight:'bold'}}>Endereço: </Text>
+                <Text style={{color:'black', fontSize:17}}>{el.endereco}</Text>
+            </View>
+            
              {/* <TextoComumCinza style={estilo.itemTexto} conteudo={el} /> */}
         </View>
     }

@@ -9,7 +9,7 @@ import { Context } from '../Contexto'
 
 
 export default function Home(){
-    const {nomeUsuario, temas} = useContext(Context)
+    const {nomeUsuario} = useContext(Context)
     const [img, frase] = lerHorarioDia();
 
     let nomeParaMostrar = ', ' + nomeUsuario + '!'

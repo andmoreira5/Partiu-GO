@@ -9,7 +9,10 @@ export const buscarTemas = `query getTemas ($day:Date!) {
          grupo{
            data{
              attributes{
-               nome
+              nome
+              local
+              endereco
+              horario
              }
            }
          }
