@@ -23,8 +23,7 @@ export default function Home(){
             source={img} 
             style={estilo.imageBackground}>
                 <TituloBranco 
-                 conteudo={frase+nomeParaMostrar}
-                 style={estilo.titulo}/>
+                 conteudo={frase+nomeParaMostrar} />
 
                 <CaixaDialogoGrupo />
             </ImageBackground>

@@ -9,11 +9,15 @@ import TratarDados from '../FuncoesLogicas/TratarDadosServidor'
 import { Context } from '../Contexto'
 import { Text } from "react-native";
 import { color } from "react-native-reanimated";
+import CardHojeNaoTemGrupo from "./CardHojeNaoTemGrupo";
 
 
 export default function CaixaDialogoGrupo(){
     const {temas} = useContext(Context)
     let titulo = 'HOJE TEM GRUPO DE ORAÇÃO'
+    if(temas.length==0){
+        titulo='HOJE NÃO TEM GRUPO!'
+    }
     
 
     function leitura(el){
@@ -42,15 +46,21 @@ export default function CaixaDialogoGrupo(){
 
     
     return(
-        <View style={estilo.container}>
-            <View style={estilo.primeiraLinha}>
-                <Icon style={estilo.icon} name="notifications" color={'#ef5a34'} />
-                <TextoComumLaranja conteudo={titulo} />
-            </View>
-            <View style={estilo.conteudo}>
-            {temas.map((el) => leitura(el))}
-            </View>
+
+        
+
+        // <View style={estilo.container}>
+        //     <View style={estilo.primeiraLinha}>
+        //         <Icon style={estilo.icon} name="notifications" color={'#ef5a34'} />
+        //         <TextoComumLaranja conteudo={titulo} />
+        //     </View>
+        //     {/* <View style={estilo.conteudo}>
+        //         {temas.map((el) => leitura(el))}
+        //         {temas.length==0 ? <TextoComumCinza conteudo='Reze pela RCC!' /> : <></>}
+        //     </View> */}
             
-        </View>
+        // </View>
+
+<CardHojeNaoTemGrupo />
     );
 }

@@ -15,13 +15,19 @@ import LottieView from 'lottie-react-native';
 
 
 export default function SplashBoasVindas (){
-  const {setTemas, setNomeUsuario} = useContext(Context)
+  const {setTemas, setNomeUsuario, nomeUsuario} = useContext(Context)
   const navigation = useNavigation()
-  const nome = lerDado('id')
+
+  let tela = 'Principal'
+  var nome = lerDado('id')
   setNomeUsuario(nome)
+  console.log(nome + '//')
+  if(nome==''){
+    tela = 'SplashInicial01'
+  }
 
   useEffect(()=>{
-    // console.log(lerDado('id')) //
+
     
     const buscarDados = async () => {
       const response = await fetch(urlServidor, {
@@ -38,35 +44,36 @@ export default function SplashBoasVindas (){
       })
       const result = await response.json()
       var temas = []
-        result.data.temas.data.map(item => {
-        var obj = {
-          tema: item.attributes.tema,
-          dia: item.attributes.dia,
-          grupo: item.attributes.grupo.data.attributes.nome,
-          local: item.attributes.grupo.data.attributes.local,
-          endereco: item.attributes.grupo.data.attributes.endereco,
-          horario: item.attributes.grupo.data.attributes.horario
-        }
-        temas.push(obj)
-      })
-      setTemas(temas)
-      let tela = 'Principal'
-      if(nome===''){
-        tela = 'SplashInicial01'
+      result.data.temas.data.map(item => {
+      var obj = {
+        tema: item.attributes.tema,
+        dia: item.attributes.dia,
+        grupo: item.attributes.grupo.data.attributes.nome,
+        local: item.attributes.grupo.data.attributes.local,
+        endereco: item.attributes.grupo.data.attributes.endereco,
+        horario: item.attributes.grupo.data.attributes.horario
       }
-      setTimeout( () => {
-          navigation.navigate(tela)
-      },6000);
+      temas.push(obj)
+    })
+      setTimeout(()=>{
+        navigation.navigate(tela)
+        // console.log(tela)
+      }, 5000)
+      setTemas(temas)
+      
+      
+      
+      
     }
     buscarDados()
-   
+  
   }, [])
 
   // setTemas(temas)
 
   return(
     <View style={estilo.containerBoasVindas}>
-      <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')} />
+      <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')}  />
       <TituloSplash>Carregando...</TituloSplash>
       {/* <ActivityIndicator size="large" color={cores.verde} /> */}
       <View >

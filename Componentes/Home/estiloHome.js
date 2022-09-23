@@ -9,7 +9,8 @@ const estilo = StyleSheet.create({
         flex: 1,
         resizeMode: "cover",
         justifyContent: "space-around",
-        alignItems: "center"
+        alignItems: "center",
+        
       },
       titulo: {
       }

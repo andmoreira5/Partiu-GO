@@ -6,7 +6,7 @@ import estiloTextos from './estiloTextos'
 
 export  function TituloBranco(props){
     return(
-        <Text style={estiloTextos.tituloBranco} >{props.conteudo}</Text>
+        <Text style={[estiloTextos.tituloBranco,]} >{props.conteudo}</Text>
     );
 }
 

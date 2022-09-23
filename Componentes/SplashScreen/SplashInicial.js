@@ -12,7 +12,7 @@ export default function SplashInicial(){
   return(
     <View style={estilo.container}>
       <Image style={estilo.imagem} source={require('../../assets/logo.png')} />
-      <LottieView style={estilo.ondas} source={require('../../assets/ondas.json')} autoPlay loop />
+      <LottieView style={estilo.ondas}  source={require('../../assets/ondas.json')} autoPlay loop />
       <LinearGradient
         // Button Linear Gradient
         colors={['#68b5b8', '#3b5998']}

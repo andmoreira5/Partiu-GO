@@ -21,3 +21,5 @@ export const buscarTemas = `query getTemas ($day:Date!) {
    }
   }
   `
+
+  // export 

@@ -11,6 +11,7 @@ import { OrganizarDadosServidor } from "../FuncoesLogicas/TratarDadosServidor";
 export default function TelaOla () {
 
     const {nomeUsuario} = useContext(UserContext)
+    
 
     // OrganizarDadosServidor(state, route.params.dados.temas)
 
