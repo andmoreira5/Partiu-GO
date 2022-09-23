@@ -5,7 +5,6 @@ export const buscarTemas = `query getTemas ($day:Date!) {
      data{
        attributes{
          tema
-         dia
          grupo{
            data{
              attributes{
@@ -22,4 +21,17 @@ export const buscarTemas = `query getTemas ($day:Date!) {
   }
   `
 
-  // export 
+  export const buscarGruposDeHoje = `
+  query getGrupos  ($day:String!)  {
+     grupos (filters:{diaDaSemana: {eq:$day}}) {
+      data{
+        attributes{
+          nome
+          local
+          endereco
+          horario
+        }
+      }
+    }
+  }     
+  `

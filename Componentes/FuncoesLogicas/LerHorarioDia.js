@@ -18,8 +18,12 @@ export default function lerHorarioDia(){
 export function lerDiaDeHoje(){
     let dataAtual = new Date(); 
     return (dataAtual.getFullYear() + "-" + (adicionaZero(dataAtual.getMonth()+1).toString()) + "-" + adicionaZero(dataAtual.getDate().toString())+"");
-    
 }
+
+export function lerDiaDaSemana(){
+    const dias = ['domingo', 'segunda', 'terca', 'quarta', 'quinta', 'sexta', 'sabado']
+    return dias[new Date().getDay()]
+ }
 
 
 function adicionaZero(numero){

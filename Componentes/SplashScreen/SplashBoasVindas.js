@@ -7,15 +7,15 @@ import estilo from './estilosSplash'
 import { TituloSplash } from '../Textos/Textos'
 import { Context } from '../Contexto'
 import urlServidor from '../Servidor'
-import { lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
-import { buscarTemas } from '../Dados/Queries'
+import { lerDiaDaSemana, lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
+import { buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
 import { useNavigation } from '@react-navigation/native';
 import { lerDado } from '../FuncoesLogicas/LerDados'
 import LottieView from 'lottie-react-native';
 
 
 export default function SplashBoasVindas (){
-  const {setTemas, setNomeUsuario, nomeUsuario} = useContext(Context)
+  const {setTemas, setNomeUsuario, setGrupos} = useContext(Context)
   const navigation = useNavigation()
 
   let tela = 'Principal'
@@ -28,7 +28,6 @@ export default function SplashBoasVindas (){
 
   useEffect(()=>{
 
-    
     const buscarDados = async () => {
       const response = await fetch(urlServidor, {
         method: 'POST',
@@ -55,27 +54,45 @@ export default function SplashBoasVindas (){
       }
       temas.push(obj)
     })
+    setTemas(temas)
+    const resp = await fetch(urlServidor, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: buscarGruposDeHoje,
+        variables: {
+          day: lerDiaDaSemana(),
+        },
+      }),
+    })
+    const res = await resp.json()
+    var grupos = []
+    res.data.grupos.data.map(item => {
+      var obj = {
+        grupo: item.attributes.nome,
+        local: item.attributes.local,
+        endereco: item.attributes.endereco,
+        horario: item.attributes.horario
+      }
+      grupos.push(obj)
+    })
+    setGrupos(grupos)
       setTimeout(()=>{
         navigation.navigate(tela)
         // console.log(tela)
       }, 5000)
-      setTemas(temas)
-      
-      
-      
       
     }
     buscarDados()
   
   }, [])
 
-  // setTemas(temas)
-
   return(
     <View style={estilo.containerBoasVindas}>
       <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')}  />
       <TituloSplash>Carregando...</TituloSplash>
-      {/* <ActivityIndicator size="large" color={cores.verde} /> */}
       <View >
             <LottieView style={estilo.aviao}  source={require('../../assets/cat.json')} autoPlay loop />
             <TituloSplash conteudo={'Olá!'} />
