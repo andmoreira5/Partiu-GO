@@ -1,12 +1,11 @@
 //É o quadro branco informando se tem grupo hoje ou não
 
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import { Context } from '../Contexto'
 import CardHojeNaoTemGrupo from "./CardHojeNaoTemGrupo";
 import { useState } from "react";
 import CardHojeTemGrupo from "./CardHojeTemGrupo";
 import { ScrollView, View } from "react-native";
-import { TextoComum } from "../Textos/Textos";
 import { Text } from "react-native";
 
 
@@ -15,16 +14,20 @@ export default function CaixaDialogoGrupo(){
     const [temGrupo, setTemGrupo] = useState(true)
     var arrayParaExibir = []
     let titulo = 'HOJE TEM GRUPO DE ORAÇÃO'
-    if(temas.length==0 && grupos.length==0){
-        titulo='HOJE NÃO TEM GRUPO!'
-        setTemGrupo(false)
-    }else{
-        if(temas.length==0){
-            arrayParaExibir = grupos
+
+    useEffect(()=>{
+        if(temas.length==0 && grupos.length==0){
+            titulo='HOJE NÃO TEM GRUPO!'
+            setTemGrupo(false)
         }else{
-            arrayParaExibir = temas
+            if(temas.length==0){
+                arrayParaExibir = grupos
+            }else{
+                arrayParaExibir = temas
+            }
         }
-    }
+    }, [])
+    
     
     return(
         <>

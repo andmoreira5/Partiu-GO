@@ -6,6 +6,8 @@ import { TituloBranco } from "../Textos/Textos";
 import estilo from './estiloHome';
 import CaixaDialogoGrupo from './CaixaDialogoGrupo';
 import { Context } from '../Contexto'
+import { lerDado } from "../FuncoesLogicas/LerDados";
+import { Image } from "react-native";
 
 
 export default function Home(){
@@ -17,11 +19,16 @@ export default function Home(){
         nomeParaMostrar = '!';
     }
   
+
+    console.log('inf> ' + lerDado('id'))
+
     return(
         <View style={estilo.container}>
+               
             <ImageBackground 
             source={img} 
             style={estilo.imageBackground}>
+             
                 <TituloBranco 
                  conteudo={frase+nomeParaMostrar} />       
                 <CaixaDialogoGrupo />

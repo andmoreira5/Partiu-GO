@@ -6,22 +6,21 @@ import { View, Image, ActivityIndicator} from 'react-native'
 import estilo from './estilosSplash'
 import { TituloSplash } from '../Textos/Textos'
 import { Context } from '../Contexto'
-import urlServidor from '../Servidor'
+import urlServidor, { server } from '../Servidor'
 import { lerDiaDaSemana, lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
-import { buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
+import { buscarFormacoes, buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
 import { useNavigation } from '@react-navigation/native';
 import { lerDado } from '../FuncoesLogicas/LerDados'
 import LottieView from 'lottie-react-native';
 
 
 export default function SplashBoasVindas (){
-  const {setTemas, setNomeUsuario, setGrupos} = useContext(Context)
+  const {setTemas, setNomeUsuario, setGrupos, setFormacoes} = useContext(Context)
   const navigation = useNavigation()
 
   let tela = 'Principal'
   var nome = lerDado('id')
   setNomeUsuario(nome)
-  console.log(nome + '//')
   if(nome==''){
     tela = 'SplashInicial01'
   }
@@ -29,6 +28,7 @@ export default function SplashBoasVindas (){
   useEffect(()=>{
 
     const buscarDados = async () => {
+      //busca dos temas
       const response = await fetch(urlServidor, {
         method: 'POST',
         headers: {
@@ -55,6 +55,8 @@ export default function SplashBoasVindas (){
       temas.push(obj)
     })
     setTemas(temas)
+
+    //busca dados dos grupos de oração
     const resp = await fetch(urlServidor, {
       method: 'POST',
       headers: {
@@ -79,13 +81,51 @@ export default function SplashBoasVindas (){
       grupos.push(obj)
     })
     setGrupos(grupos)
-      setTimeout(()=>{
-        navigation.navigate(tela)
-        // console.log(tela)
-      }, 5000)
+
+    //busca dos dados de formação
+    const respFormacoes = await fetch(urlServidor, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: buscarFormacoes,
+      }),
+    })
+    const responseFormatado = await respFormacoes.json()
+    var formacoes = []
+    responseFormatado.data.formacaos.data.map(item => {
       
+       var materiais = []
+       item.attributes.item.map((el)=>{
+        var objeto = {
+          url: server + el.capa.data.attributes.url,
+          titulo:  el.titulo,
+          descricao:  el.descricao
+        }
+        materiais.push(objeto)
+        
+     })
+       var obj = {
+        grupoFormativo: item.attributes.grupo,
+        apostilas: materiais
+       }
+       formacoes.push(obj)
+     
+    })
+    setFormacoes(formacoes)
+    console.log(formacoes)
+
+   
     }
     buscarDados()
+    setTimeout(()=>{
+      if(nome==''){
+        tela = 'SplashInicial01'
+      }
+      navigation.navigate(tela)
+    }, 5000)
+    
   
   }, [])
 

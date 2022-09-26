@@ -35,3 +35,26 @@ export const buscarTemas = `query getTemas ($day:Date!) {
     }
   }     
   `
+
+  export const buscarFormacoes = `
+query getFormacoes{
+  formacaos {
+    data{
+      attributes{
+        grupo
+        item{
+          capa{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+          titulo
+          descricao
+        }
+      }
+    }
+  }
+}         
+`
