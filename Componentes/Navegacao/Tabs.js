@@ -1,8 +1,6 @@
 import { createBottomTabNavigator  } from "@react-navigation/bottom-tabs";
 import Conselho from "../Conselho/Conselho";
-import DadosComFoto from "../Conselho/DadosComFoto";
 import Home from "../Home/Home";
-import dadosConselho from '../Dados/Conselho';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Context } from "../Contexto";
 import { View, StyleSheet, StatusBar, Alert } from "react-native";
@@ -23,7 +21,7 @@ const Tabs = () => {
     
     return(
         <>
-            <StatusBar barStyle={"light-content"}  />
+            <StatusBar barStyle="light-content"  backgroundColor="transparent" translucent={true}/>
             <Tab.Navigator 
             
             initialRouteName="Home"
@@ -70,7 +68,6 @@ const Tabs = () => {
                     showLabel: true,
                     
             }}
-            // tabBar={ba}
             >
                 <Tab.Screen name="Formacoes" 
                  listeners={{
