@@ -58,3 +58,25 @@ query getFormacoes{
   }
 }         
 `
+export const buscarConselho = `
+query get{
+  conselhos {
+    data{
+      attributes{
+        grupo
+        item{
+          capa{
+            data{
+              attributes{
+                url
+              }
+            }
+          }
+          titulo
+          descricao
+        }
+      }
+    }
+  }
+}         
+`

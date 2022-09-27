@@ -19,8 +19,8 @@ const Tabs = () => {
     const [nomeIconFormacoes, setNomeIconFormacoes] = useState('book-outline')
     const [iconConselho, setIconConselho] = useState('')
     const [nomeIconConselho, setNomeIconConselho] = useState('person-outline')
-    const {formacoes} = useContext(Context)
-
+    const {formacoes, conselho} = useContext(Context)
+    
     return(
         <>
             <StatusBar barStyle={"light-content"}  />
@@ -103,7 +103,7 @@ const Tabs = () => {
                         setNomeIconConselho('person-outline')
                     }
                 }} 
-                name="Conselho" component={() => <Conselho titulo={"Conselho da Cidade"} dados={<DadosComFoto dados={dadosConselho} />}/>} />
+                name="Conselho" component={() => <Conselho titulo={"Conselho da Cidade"} dados={conselho}/>} />
             </Tab.Navigator>
         </>
     )

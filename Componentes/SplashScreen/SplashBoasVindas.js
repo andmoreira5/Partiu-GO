@@ -8,14 +8,14 @@ import { TituloSplash } from '../Textos/Textos'
 import { Context } from '../Contexto'
 import urlServidor, { server } from '../Servidor'
 import { lerDiaDaSemana, lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
-import { buscarFormacoes, buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
+import { buscarConselho, buscarFormacoes, buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
 import { useNavigation } from '@react-navigation/native';
 import { lerDado } from '../FuncoesLogicas/LerDados'
 import LottieView from 'lottie-react-native';
-
+import axios from 'axios';
 
 export default function SplashBoasVindas (){
-  const {setTemas, setNomeUsuario, setGrupos, setFormacoes} = useContext(Context)
+  const {setTemas, setNomeUsuario, setGrupos, setFormacoes, setConselho} = useContext(Context)
   const navigation = useNavigation()
 
   let tela = 'Principal'
@@ -26,6 +26,19 @@ export default function SplashBoasVindas (){
   }
 
   useEffect(()=>{
+    
+    // axios
+    //   .post(server+'/auth/local', {
+    //     identifier: 'and.moreira5@outlook.com',
+    //     password: 'Aa123456',
+    //   })
+    //   .then(response => {
+    //     console.log('User profile', response.data.user);
+    //     console.log('User token', response.data.jwt);
+    //   })
+    //   .catch(error => {
+    //     console.log('An error occurred:', error.response);
+    //   });
 
     const buscarDados = async () => {
       //busca dos temas
@@ -107,14 +120,48 @@ export default function SplashBoasVindas (){
         
      })
        var obj = {
-        grupoFormativo: item.attributes.grupo,
-        apostilas: materiais
+        grupo: item.attributes.grupo,
+        content: materiais
        }
        formacoes.push(obj)
      
     })
     setFormacoes(formacoes)
-    console.log(formacoes)
+
+
+    //busca dos dados de conselho
+    const respConselho = await fetch(urlServidor, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: buscarConselho,
+      }),
+    })
+    const responseFormatadoConselho = await respConselho.json()
+    var conselho = []
+    responseFormatadoConselho.data.conselhos.data.map(item => {
+      
+       var data = []
+       item.attributes.item.map((el)=>{
+        var objeto = {
+          url: server + el.capa.data.attributes.url,
+          titulo:  el.titulo,
+          descricao:  el.descricao
+        }
+        data.push(objeto)
+        
+     })
+       var obj = {
+        grupo: item.attributes.grupo,
+        content: data
+       }
+       conselho.push(obj)
+     
+    })
+    setConselho(conselho)
+    console.log(conselho)
 
    
     }

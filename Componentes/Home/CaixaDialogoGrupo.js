@@ -12,7 +12,7 @@ import { Text } from "react-native";
 export default function CaixaDialogoGrupo(){
     const {temas, grupos} = useContext(Context)
     const [temGrupo, setTemGrupo] = useState(true)
-    var arrayParaExibir = []
+    const [arrayParaExibir, setArrayParaExibir] = useState([])
     let titulo = 'HOJE TEM GRUPO DE ORAÇÃO'
 
     useEffect(()=>{
@@ -21,9 +21,9 @@ export default function CaixaDialogoGrupo(){
             setTemGrupo(false)
         }else{
             if(temas.length==0){
-                arrayParaExibir = grupos
+                setArrayParaExibir(grupos)
             }else{
-                arrayParaExibir = temas
+                setArrayParaExibir(temas)
             }
         }
     }, [])
