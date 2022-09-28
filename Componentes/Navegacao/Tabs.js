@@ -13,15 +13,14 @@ const Tab = createBottomTabNavigator()
 // }, [])
 const Tabs = () => {
     const [iconHom, setIconHom] = useState([styles.iconTabRound, 'home'])
-    const [iconFormacoes, setIconFormacoes] = useState('')
-    const [nomeIconFormacoes, setNomeIconFormacoes] = useState('book-outline')
-    const [iconConselho, setIconConselho] = useState('')
-    const [nomeIconConselho, setNomeIconConselho] = useState('person-outline')
-    const {formacoes, conselho} = useContext(Context)
+    const [iconFormacoes, setIconFormacoes] = useState(['', 'book-outline'])
+    const [iconConselho, setIconConselho] = useState(['', 'person-outline'])
+    const {formacoes, conselho, calendario} = useContext(Context)
+    const [iconCalendario, setIconCalendario] = useState(['', 'calendar-outline'])
     
     return(
         <>
-            <StatusBar barStyle="light-content"  backgroundColor="transparent" translucent={true}/>
+            <StatusBar barStyle={"light-content"} translucent={true} backgroundColor={'transparent'} />
             <Tab.Navigator 
             
             initialRouteName="Home"
@@ -35,15 +34,16 @@ const Tabs = () => {
                             estilo = iconHom[0]
                             break;
                         case 'Conselho':
-                            iconName = nomeIconConselho;
-                            estilo = iconConselho
+                            iconName = iconConselho[1];
+                            estilo = iconConselho[0]
                             break;
                         case 'Formacoes':
-                            iconName = nomeIconFormacoes;
-                            estilo = iconFormacoes
+                            iconName = iconFormacoes[1];
+                            estilo = iconFormacoes[0]
                             break;
-                        case 'Notifications':
-                            iconName = 'bell';
+                        case 'Eventos':
+                            iconName = iconCalendario[1]
+                            estilo = iconCalendario[0]
                             break;
                         case 'Settings':
                             iconName = 'settings';
@@ -62,6 +62,7 @@ const Tabs = () => {
                     );
                 },headerTransparent:true, headerTintColor:'transparent', 
             })}
+            
                 tabBarOptions={{
                     activeTintColor: cores.laranja,
                     inactiveTintColor: '#777',
@@ -72,15 +73,25 @@ const Tabs = () => {
                 <Tab.Screen name="Formacoes" 
                  listeners={{
                     tabPress: (e) =>{
-                        setIconFormacoes(styles.iconTabRound)
-                        setNomeIconFormacoes('book')
+                        setIconFormacoes([styles.iconTabRound, 'book'])
                     },
                     blur: (e) =>{
-                        setIconFormacoes('')
-                        setNomeIconFormacoes('book-outline')
+                        setIconFormacoes(['', 'book-outline'])
                     }
                 }} 
-                component={() => <Conselho titulo={"Processo Formativo"} dados={formacoes}/>}  />
+                children={() => <Conselho titulo={"Processo Formativo"} dados={formacoes} isCalendario={false}/>}  />
+
+            <Tab.Screen
+                listeners={{
+                    tabPress: (e) =>{
+                        setIconCalendario([styles.iconTabRound, 'calendar'])
+                    },
+                    blur: (e) =>{
+                        setIconCalendario(['', 'calendar-outline'])
+                    }
+                }} 
+                name="Eventos" children={() => <Conselho titulo={"Calendário"} dados={calendario}  isCalendario={true}/>} />
+
                 <Tab.Screen  listeners={{
                     tabPress: (e) =>{
                         setIconHom([styles.iconTabRound, 'home'])
@@ -89,18 +100,17 @@ const Tabs = () => {
                         setIconHom(['', 'home-outline'])
                     }
                 }}  name="Home" component={Home} />
+
                 <Tab.Screen
                 listeners={{
                     tabPress: (e) =>{
-                        setIconConselho(styles.iconTabRound)
-                        setNomeIconConselho('person')
+                        setIconConselho([styles.iconTabRound, 'person'])
                     },
                     blur: (e) =>{
-                        setIconConselho('')
-                        setNomeIconConselho('person-outline')
+                        setIconConselho(['', 'person-outline'])
                     }
                 }} 
-                name="Conselho" component={() => <Conselho titulo={"Conselho da Cidade"} dados={conselho}/>} />
+                name="Conselho" children={() => <Conselho titulo={"Conselho da Cidade"} dados={conselho}  isCalendario={false}/>} />
             </Tab.Navigator>
         </>
     )
@@ -121,7 +131,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 6,
-        shadowColor: '#9C27B0',
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 5,

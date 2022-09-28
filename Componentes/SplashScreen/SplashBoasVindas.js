@@ -8,25 +8,36 @@ import { TituloSplash } from '../Textos/Textos'
 import { Context } from '../Contexto'
 import urlServidor, { server } from '../Servidor'
 import { lerDiaDaSemana, lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
-import { buscarConselho, buscarFormacoes, buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
+import { buscarCalendario, buscarConselho, buscarFormacoes, buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
 import { useNavigation } from '@react-navigation/native';
-import { lerDado } from '../FuncoesLogicas/LerDados'
+import { lerDado, lerNomeUsuario } from '../FuncoesLogicas/LerDados'
 import LottieView from 'lottie-react-native';
-import axios from 'axios';
+import { useState } from 'react'
+import NetInfo from "@react-native-community/netinfo"
+import { Dimensions } from 'react-native'
+
 
 export default function SplashBoasVindas (){
-  const {setTemas, setNomeUsuario, setGrupos, setFormacoes, setConselho} = useContext(Context)
+  const {setTemas, setGrupos, setFormacoes, setConselho, nomeUsuario, setCalendario} = useContext(Context)
   const navigation = useNavigation()
+  const [tela, setTela] = useState('Principal')
+  const [animacao, setAnimacao] = useState(require('../../assets/cat.json'))
+  const [textoAnimacao, setTextoAnimacao] = useState('Olá!')
+  const [estaConectado, setEstaConectado] = useState(true)
 
-  let tela = 'Principal'
-  var nome = lerDado('id')
-  setNomeUsuario(nome)
-  if(nome==''){
-    tela = 'SplashInicial01'
-  }
+
+  lerNomeUsuario()
+  useEffect(()=>{
+     
+    if(nomeUsuario=='' || typeof nomeUsuario=="undefined"){
+      setTela('SplashInicial01')
+    }else{
+      setTela('Principal')
+    }
+  }, [nomeUsuario])
+
 
   useEffect(()=>{
-    
     // axios
     //   .post(server+'/auth/local', {
     //     identifier: 'and.moreira5@outlook.com',
@@ -161,17 +172,68 @@ export default function SplashBoasVindas (){
      
     })
     setConselho(conselho)
-    console.log(conselho)
+
+
+    //busca dos dados de calendario
+    const respCalendario = await fetch(urlServidor, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: buscarCalendario,
+        variables: {
+          day: lerDiaDeHoje(),
+        },
+      }),
+    })
+    const responseFormatadoCalendario = await respCalendario.json()
+    var calendario = []
+    responseFormatadoCalendario.data.calendarios.data.map(item => {
+      
+       var data = []
+       item.attributes.Eventos.map((el)=>{
+        var objeto = {
+          descricao: el.Descricao,
+          inicio:  el.Inicio,
+          fim:  el.Fim,
+          endereco: el.Endereco,
+          horario: el.Horario
+        }
+        data.push(objeto)
+        
+     })
+       var obj = {
+        mes: item.attributes.Mes,
+        ano: item.attributes.Ano,
+        content: data
+       }
+       calendario.push(obj)
+     
+    })
+    setCalendario(calendario)
+
+    console.log(calendario)
 
    
     }
-    buscarDados()
-    setTimeout(()=>{
-      if(nome==''){
-        tela = 'SplashInicial01'
-      }
-      navigation.navigate(tela)
-    }, 5000)
+
+    NetInfo.fetch().then(state => {
+      setEstaConectado(state.isInternetReachable)
+    });
+    if(estaConectado){
+      setAnimacao(require('../../assets/cat.json'))
+      setTextoAnimacao('Olá!')
+      buscarDados()
+      setTimeout(()=>{
+        navigation.navigate(tela)
+      }, 5000)
+    }else{
+      setAnimacao(require('../../assets/triste.json'))
+      setTextoAnimacao('Pôxa, estamos sem internet!')
+    }
+
+    
     
   
   }, [])
@@ -179,10 +241,10 @@ export default function SplashBoasVindas (){
   return(
     <View style={estilo.containerBoasVindas}>
       <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')}  />
-      <TituloSplash>Carregando...</TituloSplash>
+      {/* <TituloSplash conteudo='Carregando...'></TituloSplash> */}
       <View >
-            <LottieView style={estilo.aviao}  source={require('../../assets/cat.json')} autoPlay loop />
-            <TituloSplash conteudo={'Olá!'} />
+            <LottieView style={{width:Dimensions.get('window').width*0.8}}  source={animacao} autoPlay loop />
+            <TituloSplash conteudo={textoAnimacao} />
         </View>
     </View>
   )

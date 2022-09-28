@@ -8,11 +8,13 @@ export default function ContextoProvider({children}){
   const [nomeUsuario, setNomeUsuario] = useState()
   const [formacoes, setFormacoes] = useState([])
   const [conselho, setConselho] = useState([])
+  const [calendario, setCalendario] = useState([])
 
   return <Context.Provider value={{temas, setTemas, 
     nomeUsuario, setNomeUsuario, 
     grupos, setGrupos, 
     formacoes, setFormacoes,
-    conselho, setConselho}}>{children}</Context.Provider>
+    conselho, setConselho,
+    calendario, setCalendario}}>{children}</Context.Provider>
 
 }

@@ -80,3 +80,23 @@ query get{
   }
 }         
 `
+
+export const buscarCalendario = `
+query get ($day:Date!) {
+  calendarios{
+    data{
+      attributes{
+        Mes
+        Ano
+        Eventos  (filters:{Inicio:{gt:$day}}, sort:"Inicio:asc") {
+          Descricao
+          Inicio
+          Fim
+          Endereco
+          Horario
+        }
+      }
+    }
+  }
+}      
+`

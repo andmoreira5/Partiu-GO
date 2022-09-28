@@ -1,11 +1,13 @@
 import {StyleSheet} from 'react-native';
+import { cores } from '../Configuracoes/Configuracoes';
 
 const estilo = StyleSheet.create({
     container: {
         flexDirection:'row', alignItems:'center', 
         width: '80%',
         marginBottom: 20,
-        marginLeft:15
+        marginLeft:15,
+        backgroundColor:'#0002',
         
       },
       traco:{
@@ -17,10 +19,13 @@ const estilo = StyleSheet.create({
         
       },
       data:{
-          fontSize:27
+          fontSize:25,
+          color:cores.amarelo
       },
       detalhes:{
-        fontSize:15
+        fontSize:15,
+        marginLeft:10,
+        color: '#fffd'
       }
       
 });
