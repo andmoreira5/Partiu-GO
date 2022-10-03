@@ -11,7 +11,6 @@ export default function DadosCalendario(props){
     function formatarData(value){
         var array = value.inicio.split('-')
         var adicional = ''
-        console.log('ff ' + value.fim)
         if(value.fim!=null){
             var arrayFim = value.fim.split('-')
             adicional = ' à ' + arrayFim[2] + '/' + arrayFim[1]

@@ -212,9 +212,6 @@ export default function SplashBoasVindas (){
      
     })
     setCalendario(calendario)
-
-    console.log(calendario)
-
    
     }
 
