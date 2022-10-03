@@ -1,6 +1,5 @@
 import React from "react";
 import {ImageBackground} from 'react-native'
-import { Text } from "react-native";
 import { View, ScrollView } from "react-native";
 
 import { TituloBranco } from "../Textos/Textos";

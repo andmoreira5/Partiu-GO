@@ -7,7 +7,7 @@ import estilo from "./estiloCardCalendario";
 export default function DetalhesCalendario (props){
     return(
         <View style={{flexDirection:'row', alignItems:'center'}}>
-            <Icon  name={props.nome} size={18} color='white'  />
+            <Icon style={{marginLeft:10}}  name={props.nome} size={18} color='white'  />
             <Text style={estilo.detalhes} >{props.value}</Text>
         </View>
     )

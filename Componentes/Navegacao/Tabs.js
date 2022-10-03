@@ -1,11 +1,12 @@
 import { createBottomTabNavigator  } from "@react-navigation/bottom-tabs";
 import Conselho from "../Conselho/Conselho";
 import Home from "../Home/Home";
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Context } from "../Contexto";
 import { View, StyleSheet, StatusBar, Alert } from "react-native";
 import React, {  useState, useContext } from "react";
 import { cores } from "../Configuracoes/Configuracoes";
+import Detalhes from "../Detalhes/Detalhes";
 
 const Tab = createBottomTabNavigator()
 
@@ -14,9 +15,10 @@ const Tab = createBottomTabNavigator()
 const Tabs = () => {
     const [iconHom, setIconHom] = useState([styles.iconTabRound, 'home'])
     const [iconFormacoes, setIconFormacoes] = useState(['', 'book-outline'])
-    const [iconConselho, setIconConselho] = useState(['', 'person-outline'])
+    const [iconConselho, setIconConselho] = useState(['', 'account-outline'])
     const {formacoes, conselho, calendario} = useContext(Context)
     const [iconCalendario, setIconCalendario] = useState(['', 'calendar-outline'])
+    const [iconDetalhes, setIconDetalhes] = useState(['', 'cat'])
     
     return(
         <>
@@ -37,7 +39,7 @@ const Tabs = () => {
                             iconName = iconConselho[1];
                             estilo = iconConselho[0]
                             break;
-                        case 'Formacoes':
+                        case 'Formações':
                             iconName = iconFormacoes[1];
                             estilo = iconFormacoes[0]
                             break;
@@ -45,8 +47,9 @@ const Tabs = () => {
                             iconName = iconCalendario[1]
                             estilo = iconCalendario[0]
                             break;
-                        case 'Settings':
-                            iconName = 'settings';
+                        case 'Detalhes':
+                            iconName = iconDetalhes[1]
+                            estilo = iconDetalhes[0]
                             break;
                         default:
                             iconName = 'circle';
@@ -70,7 +73,7 @@ const Tabs = () => {
                     
             }}
             >
-                <Tab.Screen name="Formacoes" 
+                <Tab.Screen name="Formações" 
                  listeners={{
                     tabPress: (e) =>{
                         setIconFormacoes([styles.iconTabRound, 'book'])
@@ -104,14 +107,29 @@ const Tabs = () => {
                 <Tab.Screen
                 listeners={{
                     tabPress: (e) =>{
-                        setIconConselho([styles.iconTabRound, 'person'])
+                        setIconConselho([styles.iconTabRound, 'account'])
                     },
                     blur: (e) =>{
-                        setIconConselho(['', 'person-outline'])
+                        setIconConselho(['', 'account-outline'])
                     }
                 }} 
                 name="Conselho" children={() => <Conselho titulo={"Conselho da Cidade"} dados={conselho}  isCalendario={false}/>} />
+            
+            <Tab.Screen
+                listeners={{
+                    tabPress: (e) =>{
+                        setIconDetalhes([styles.iconTabRound, 'cat'])
+                    },
+                    blur: (e) =>{
+                        setIconDetalhes(['', 'cat'])
+                    }
+                }} 
+                name="Detalhes" component={Detalhes} />
+            
+            
             </Tab.Navigator>
+
+            
         </>
     )
 }
