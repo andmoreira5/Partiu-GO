@@ -2,19 +2,20 @@
 //Aqui também faremos a conexão com o servidor pra ver se tem dado novo.
 
 import React, { useEffect, useContext } from 'react'
-import { View, Image, ActivityIndicator} from 'react-native'
+import { View, Image} from 'react-native'
 import estilo from './estilosSplash'
 import { TituloSplash } from '../Textos/Textos'
 import { Context } from '../Contexto'
-import urlServidor, { server } from '../Servidor'
+import { server } from '../Servidor'
 import { lerDiaDaSemana, lerDiaDeHoje } from '../FuncoesLogicas/LerHorarioDia'
 import { buscarCalendario, buscarConselho, buscarFormacoes, buscarGruposDeHoje, buscarTemas } from '../Dados/Queries'
 import { useNavigation } from '@react-navigation/native';
-import { lerDado, lerNomeUsuario } from '../FuncoesLogicas/LerDados'
+import {  lerNomeUsuario } from '../FuncoesLogicas/LerDados'
 import LottieView from 'lottie-react-native';
 import { useState } from 'react'
 import NetInfo from "@react-native-community/netinfo"
 import { Dimensions } from 'react-native'
+import busca from '../Servidor/busca'
 
 
 export default function SplashBoasVindas (){
@@ -36,36 +37,10 @@ export default function SplashBoasVindas (){
     }
   }, [nomeUsuario])
 
-
-  useEffect(()=>{
-    // axios
-    //   .post(server+'/auth/local', {
-    //     identifier: 'and.moreira5@outlook.com',
-    //     password: 'Aa123456',
-    //   })
-    //   .then(response => {
-    //     console.log('User profile', response.data.user);
-    //     console.log('User token', response.data.jwt);
-    //   })
-    //   .catch(error => {
-    //     console.log('An error occurred:', error.response);
-    //   });
-
+  useEffect(()=>{    
     const buscarDados = async () => {
       //busca dos temas
-      const response = await fetch(urlServidor, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: buscarTemas,
-          variables: {
-            day: lerDiaDeHoje(),
-          },
-        }),
-      })
-      const result = await response.json()
+      const result = await busca(buscarTemas, {day: lerDiaDeHoje() })
       var temas = []
       result.data.temas.data.map(item => {
       var obj = {
@@ -81,19 +56,7 @@ export default function SplashBoasVindas (){
     setTemas(temas)
 
     //busca dados dos grupos de oração
-    const resp = await fetch(urlServidor, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: buscarGruposDeHoje,
-        variables: {
-          day: lerDiaDaSemana(),
-        },
-      }),
-    })
-    const res = await resp.json()
+    const res = await busca(buscarGruposDeHoje, { day: lerDiaDaSemana() })
     var grupos = []
     res.data.grupos.data.map(item => {
       var obj = {
@@ -107,16 +70,7 @@ export default function SplashBoasVindas (){
     setGrupos(grupos)
 
     //busca dos dados de formação
-    const respFormacoes = await fetch(urlServidor, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: buscarFormacoes,
-      }),
-    })
-    const responseFormatado = await respFormacoes.json()
+    const responseFormatado = await busca(buscarFormacoes)
     var formacoes = []
     responseFormatado.data.formacaos.data.map(item => {
       
@@ -141,16 +95,7 @@ export default function SplashBoasVindas (){
 
 
     //busca dos dados de conselho
-    const respConselho = await fetch(urlServidor, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: buscarConselho,
-      }),
-    })
-    const responseFormatadoConselho = await respConselho.json()
+    const responseFormatadoConselho = await busca(buscarConselho)
     var conselho = []
     responseFormatadoConselho.data.conselhos.data.map(item => {
       
@@ -175,19 +120,7 @@ export default function SplashBoasVindas (){
 
 
     //busca dos dados de calendario
-    const respCalendario = await fetch(urlServidor, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query: buscarCalendario,
-        variables: {
-          day: lerDiaDeHoje(),
-        },
-      }),
-    })
-    const responseFormatadoCalendario = await respCalendario.json()
+    const responseFormatadoCalendario = await busca(buscarCalendario, { day: lerDiaDeHoje() })
     var calendario = []
     responseFormatadoCalendario.data.calendarios.data.map(item => {
       
@@ -230,9 +163,6 @@ export default function SplashBoasVindas (){
       setTextoAnimacao('Pôxa, estamos sem internet!')
     }
 
-    
-    
-  
   }, [])
 
   return(

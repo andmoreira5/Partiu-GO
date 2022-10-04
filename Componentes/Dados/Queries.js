@@ -100,3 +100,23 @@ query get ($day:Date!) {
   }
 }      
 `
+
+export const buscarDesenvolvedor = `
+query get {
+  desenvolvedor{
+    data{
+      attributes{
+        Nome
+        Foto{
+          data{
+            attributes{
+              url
+            }
+          }
+        }
+        Descricao
+      }
+    }
+  }
+}
+`

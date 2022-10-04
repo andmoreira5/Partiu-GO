@@ -27,6 +27,15 @@ const Tabs = () => {
             
             initialRouteName="Home"
             screenOptions={({ route }) => ({
+                "tabBarActiveTintColor": cores.laranja,
+                "tabBarInactiveTintColor": "#777",
+                "tabBarShowLabel": true,
+                "tabBarStyle": [
+                    {
+                    "display": "flex"
+                    },
+                    null
+                ],
                 tabBarStyle:{borderTopColor:cores.laranja, borderTopWidth:3},
                 tabBarIcon: ({ color, size }) => {
                     let iconName, estilo = '';
@@ -64,15 +73,7 @@ const Tabs = () => {
                         </View>
                     );
                 },headerTransparent:true, headerTintColor:'transparent', 
-            })}
-            
-                tabBarOptions={{
-                    activeTintColor: cores.laranja,
-                    inactiveTintColor: '#777',
-                    showLabel: true,
-                    
-            }}
-            >
+            })}>
                 <Tab.Screen name="Formações" 
                  listeners={{
                     tabPress: (e) =>{

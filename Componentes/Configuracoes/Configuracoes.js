@@ -20,4 +20,7 @@ export const cores= {
     amarelo: '#f2e3ba',
     marrom: '#62514d',
     verde: '#007e3e',
+    tom1Detalhes:'#BA5232',
+    tom2Detalhes:'#DB8064',
+    tom3Detalhes:'#AE5D44'
 }
