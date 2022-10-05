@@ -16,28 +16,38 @@ import { useState } from 'react'
 import NetInfo from "@react-native-community/netinfo"
 import { Dimensions } from 'react-native'
 import busca from '../Servidor/busca'
+import AsyncStorage  from '@react-native-async-storage/async-storage';
+
 
 
 export default function SplashBoasVindas (){
-  const {setTemas, setGrupos, setFormacoes, setConselho, nomeUsuario, setCalendario} = useContext(Context)
+  const {setTemas, setGrupos, setFormacoes, setConselho, nomeUsuario, setNomeUsuario, setCalendario} = useContext(Context)
   const navigation = useNavigation()
-  const [tela, setTela] = useState('Principal')
   const [animacao, setAnimacao] = useState(require('../../assets/cat.json'))
   const [textoAnimacao, setTextoAnimacao] = useState('Olá!')
   const [estaConectado, setEstaConectado] = useState(true)
-
-
   lerNomeUsuario()
+
   useEffect(()=>{
-     
-    if(nomeUsuario=='' || typeof nomeUsuario=="undefined"){
-      setTela('SplashInicial01')
-    }else{
-      setTela('Principal')
+    async function getData(){
+      const response =  await AsyncStorage.getItem('id');
+      var tela
+      if(response !== null && response!=='' ){
+        tela='Principal'
+      }else{
+        tela='SplashInicial01'
+      }
+      if(estaConectado){
+        setTimeout( ()=>{
+            navigation.navigate(tela)
+        }, 5000)
+      }
     }
-  }, [nomeUsuario])
+    getData()
+  }, [])
 
   useEffect(()=>{    
+   
     const buscarDados = async () => {
       //busca dos temas
       const result = await busca(buscarTemas, {day: lerDiaDeHoje() })
@@ -155,9 +165,7 @@ export default function SplashBoasVindas (){
       setAnimacao(require('../../assets/cat.json'))
       setTextoAnimacao('Olá!')
       buscarDados()
-      setTimeout(()=>{
-        navigation.navigate(tela)
-      }, 5000)
+      
     }else{
       setAnimacao(require('../../assets/triste.json'))
       setTextoAnimacao('Pôxa, estamos sem internet!')
@@ -168,7 +176,6 @@ export default function SplashBoasVindas (){
   return(
     <View style={estilo.containerBoasVindas}>
       <Image  style={estilo.logoBoasVindas} source={require('../../assets/logo.png')}  />
-      {/* <TituloSplash conteudo='Carregando...'></TituloSplash> */}
       <View >
             <LottieView style={{width:Dimensions.get('window').width*0.8}}  source={animacao} autoPlay loop />
             <TituloSplash conteudo={textoAnimacao} />

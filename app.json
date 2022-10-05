@@ -1,12 +1,16 @@
 {
   "expo": {
-    "name": "Partiu-GO",
+    "name": "Partiu GO",
     "slug": "Partiu-GO",
     "version": "1.0.0",
     "orientation": "portrait",
+    "icon": "./assets/img/logo.png",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "android": {
+      "package": "com.and.moreira5.PartiuGO"
+    }
   },
-  "name": "Partiu-GO"
+  "name": "Partiu GO"
 }

@@ -10,11 +10,18 @@ import { Context } from "../Contexto";
 import { gravarDado } from "../FuncoesLogicas/LerDados";
 import { cores } from "../Configuracoes/Configuracoes";
 import LottieView from 'lottie-react-native'
+import { useEffect } from "react";
 
 export default function EditarNome(){
     const {nomeUsuario, setNomeUsuario} = useContext(Context)
-    const [nomeExibido, setNomeExibido] = useState(nomeUsuario)
+    const [nomeExibido, setNomeExibido] = useState('')
     const [modalVisible, setModalVisible] = useState(false);
+
+    useEffect(()=>{
+        if(nomeUsuario!='$0'){
+            setNomeExibido(nomeUsuario)
+        }
+    }, [])
 
     function confirmar(){
         if(nomeExibido==''){
