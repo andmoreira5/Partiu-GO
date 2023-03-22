@@ -6,7 +6,7 @@ import estiloTextos from './estiloTextos'
 
 export  function TituloBranco(props){
     return(
-        <Text style={[estiloTextos.tituloBranco,]} >{props.conteudo}</Text>
+        <Text className='text-white text-2xl font-bold'  >{props.conteudo}</Text>
     );
 }
 
@@ -18,7 +18,7 @@ export function TituloAmarelo(props){
 
 export function TextoComum(props){
     return(
-        <Text style={estiloTextos.textoComum} >{props.conteudo}</Text>
+        <Text style={estiloTextos.textoComum} className='text-white'>{props.conteudo}</Text>
     );
 }
 

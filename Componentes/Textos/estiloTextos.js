@@ -11,6 +11,7 @@ const estiloTextos = StyleSheet.create({
   tituloBranco:{
     fontSize:25,
     fontWeight: 'bold',
+    // color:'white',
     textShadowColor: 'black',
         textShadowOffset: {width: 0, height: 0},
         textShadowRadius: 4    
