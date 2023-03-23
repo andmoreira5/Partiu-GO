@@ -38,6 +38,7 @@ export default function SplashBoasVindas() {
         tx.executeSql(
           "create table if not exists usuario (id integer primary key not null, nome text);"
         ); //uso  0 (não usar digital), 1 (usar digital)
+        
       });
 
       db.transaction((tx) => {
@@ -45,12 +46,12 @@ export default function SplashBoasVindas() {
           "select * from usuario",
           [],
           (_, { rows: { _array } }) => {
+            console.log(_array)
             //tabela usuario indica os dados do usuário atual
             if (_array.length > 0) {
               setNomeUsuario(_array[0].nome);
               telaParaNavegar='Principal'
             } else {
-              console.log('setou')
               telaParaNavegar = "SplashInicial01"
             }
           }
@@ -84,9 +85,8 @@ export default function SplashBoasVindas() {
       setGrupos(data);
 
       setTimeout(() => {
-        console.log(telaParaNavegar)
         navigation.navigate(telaParaNavegar);
-      }, 1000);
+      }, 5000);
     });
   };
 

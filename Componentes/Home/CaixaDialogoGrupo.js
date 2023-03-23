@@ -32,7 +32,7 @@ export default function CaixaDialogoGrupo(){
     return(
         <>
             {
-                temGrupo ?
+                !temGrupo ?
                 <View style={{height:260}}>
                     <Text style={{textAlign:'center', fontWeight:'bold', fontSize:17, borderBottomColor:'white', borderBottomWidth:2, marginBottom:15, paddingBottom:5}}>HOJE TEM GRUPO DE ORAÇÃO</Text>
                     <ScrollView horizontal={true}>

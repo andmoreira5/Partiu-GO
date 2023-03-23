@@ -8,8 +8,8 @@ import InputText from '../InputTexto/InputText';
 import { TextoComum, TituloBranco } from '../Textos/Textos';
 import estilo from './estilosSplash';
 import { useNavigation } from '@react-navigation/native';
-import { gravarDado } from '../FuncoesLogicas/LerDados';
 import { Context } from '../Contexto'
+import * as SQLite from "expo-sqlite";
 
 
 export default function TextosSplash01(){
@@ -17,17 +17,37 @@ export default function TextosSplash01(){
   const {setNomeUsuario} = useContext(Context)
   const navigation = useNavigation();
 
-  async function navegarParaProximaTela(){
-    setNomeUsuario(nomeDigitado)
-    gravarDado("id", nomeDigitado);
+  async function navegarParaProximaTela(botaoSemNome){
+    var name
+    if(botaoSemNome){
+      name = '$0'
+      setNomeUsuario(name)
+    }else{
+      name = nomeDigitado
+      setNomeUsuario(name)
+    }
+
+    const db = SQLite.openDatabase("database.db");
+    db.transaction((tx) => {
+      tx.executeSql(
+      "select * from usuario", [], (_, { rows: { _array } }) => {
+          if(_array.length>0){ //se tem registro
+            tx.executeSql(
+              'update usuario set nome = ?  where id = ?', 
+              [name, _array[0].id]
+            )
+          }else{
+            tx.executeSql(
+              'insert into usuario (nome) values (?)', [name]
+            )
+            
+          }
+        }
+      )
+  })
     navigation.navigate('SplashInicial02');
   }
 
-  async function navegarParaProximaTelaSemNome(){
-    setNomeUsuario('$0')
-    gravarDado("id", "$0");
-    navigation.navigate('SplashInicial02');
-  }
 
   return(
     <>
@@ -39,10 +59,10 @@ export default function TextosSplash01(){
             value={nomeDigitado}
             onChangeText={setNomeDigitado}
           />
-          <BotaoConfirmacao title='OK' onPress={navegarParaProximaTela }/>
+          <BotaoConfirmacao title='OK' onPress={() => navegarParaProximaTela(false) }/>
         </View>
        </View>
-      <BotaoTransparente title="NEEMM (NÃO) >"  onPress={navegarParaProximaTelaSemNome} />
+      <BotaoTransparente title="NEEMM (NÃO) >"  onPress={() => navegarParaProximaTela(true)} />
       
     </>
   );
