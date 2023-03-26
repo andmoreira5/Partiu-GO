@@ -26,7 +26,7 @@ export default function Home(){
              
                 <TituloBranco 
                  conteudo={frase+nomeParaMostrar} />       
-                {/* <CaixaDialogoGrupo /> */}
+                <CaixaDialogoGrupo />
             </ImageBackground>
         </View>
     );

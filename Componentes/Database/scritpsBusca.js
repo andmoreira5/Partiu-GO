@@ -17,6 +17,18 @@ export const grupos = `
   }
 `
 
+export const conselho = `
+*[_type == "conselho"]{
+  nome, funcao, imagem
+}
+`
+
+export const formacoes =`
+*[_type == "formacao"]{
+  titulo, descricao, imagem
+}
+`
+
 
 
 

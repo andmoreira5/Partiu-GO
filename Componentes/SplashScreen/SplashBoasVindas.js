@@ -88,8 +88,56 @@ export default function SplashBoasVindas() {
         navigation.navigate(telaParaNavegar);
       }, 5000);
     });
+
+ //codigo teste
+    // var temasO = [
+    //   {
+    //     tema: 'Armadura de Deus',
+    //     grupo: {
+    //       nome: 'Nossa Senhora',
+    //       horario:'18h30',
+    //       local: 'Capela',
+    //       endereco: 'Olho Dagua'
+    //     }
+    //   }
+    // ]
+    // setTemas(temasO)
+    // var grupoO = [
+    //   {
+    //       nome: 'Nossa Senhora',
+    //       horario:'18h30',
+    //       local: 'Capela',
+    //       endereco: 'Olho Dagua',
+    //       diaDaSemana: {
+    //         descricao:'Domingo'
+    //       }
+        
+    //   }
+    // ]
+    // setGrupos(grupoO)
+
+    // setTimeout(() => {
+    //   navigation.navigate(telaParaNavegar);
+    // }, 5000);
+  
+
+
+
+    
   };
 
+
+
+
+
+
+
+
+
+
+
+
+  
   //   //busca dos dados de formação
   //   const responseFormatado = await busca(buscarFormacoes);
   //   var formacoes = [];

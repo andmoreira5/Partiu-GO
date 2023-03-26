@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 export default function CardHojeTemGrupo(props){
 
     function viewElementos(key, value){
-        if(key!='grupo'){
+        if(key!='nome'){
             var icon
             switch(key){
                 case 'tema':
@@ -27,7 +27,7 @@ export default function CardHojeTemGrupo(props){
             }
             return <View style={{flexDirection: 'row', alignItems:'center'}}>
                 <Icon name={icon} size={20} color='black'/>
-                <Text style={estilo.texto}>{value}</Text>
+                <Text key={value} style={estilo.texto}>{value}</Text>
             </View>
         }
         
@@ -35,7 +35,7 @@ export default function CardHojeTemGrupo(props){
 
     return(
         <View style={estilo.container}>
-            <Text style={estilo.titulo}>{props.item.grupo.toUpperCase()}</Text>
+            <Text style={estilo.titulo}>{props.item.nome.toUpperCase()}</Text>
             <ScrollView>
                 {Object.entries(props.item).map(([key, value]) => {
                     return viewElementos(key, value)    
