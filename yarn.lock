@@ -4076,7 +4076,7 @@ expo-modules-core@1.2.6:
 
 expo-sqlite@^11.1.1:
   version "11.1.1"
-  resolved "https://registry.npmjs.org/expo-sqlite/-/expo-sqlite-11.1.1.tgz"
+  resolved "https://registry.yarnpkg.com/expo-sqlite/-/expo-sqlite-11.1.1.tgz#476ab8ba9b9c92cb6418c2181b703f2b1ed0c77b"
   integrity sha512-93KQ4Bc4+xQF2nOZC2jcJ+d0K1ooQSEYganLukw4Sp2LuxUtBsPXYTyOeisSxQSMMaz9nHiTqag8DEC1MiB7Xw==
   dependencies:
     "@expo/websql" "^1.0.1"

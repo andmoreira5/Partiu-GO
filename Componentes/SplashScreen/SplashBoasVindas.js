@@ -78,7 +78,7 @@ export default function SplashBoasVindas() {
   const buscarDados = async () => {
     const dia = lerDiaDeHoje();
     //buscando os temas
-    client.fetch(tema, { dia }).then((data) => setTemas(data));
+    client.fetch(tema, { dia }).then((data)  => setTemas(data));
 
     //buscando as informações dos grupos de oração
     client.fetch(grupos).then((data) => {
