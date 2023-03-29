@@ -9,10 +9,11 @@ import Icon from 'react-native-vector-icons/FontAwesome5'
 export default function CardHojeTemGrupo(props){
 
     function viewElementos(key, value){
-        if(key!='nome'){
+        if(key!='nome' && key!='diaDaSemana'){
             var icon
             switch(key){
                 case 'tema':
+                    value = 'TEMA: ' + value
                     icon= 'cross'
                     break
                 case 'horario':
@@ -25,7 +26,7 @@ export default function CardHojeTemGrupo(props){
                     icon='location-arrow'
                     break
             }
-            return <View style={{flexDirection: 'row', alignItems:'center'}}>
+            return <View className='items-center flex-row'>
                 <Icon name={icon} size={20} color='black'/>
                 <Text key={value} style={estilo.texto}>{value}</Text>
             </View>

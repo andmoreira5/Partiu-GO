@@ -10,10 +10,7 @@ export const tema = `
 `
 export const grupos = `
 *[_type == "grupoDeOracao"]{
-    nome, local, endereco, horario,
-      diaDaSemana -> {
-        descricao
-      }
+    nome, local, endereco, horario, diaDaSemana
   }
 `
 
