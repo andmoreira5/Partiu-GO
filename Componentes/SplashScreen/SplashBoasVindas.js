@@ -143,34 +143,40 @@ export default function SplashBoasVindas() {
       setConselho(dadosOrganizados);
     });
 
-    client.fetch(calendario).then((data) => {
+    client.fetch(calendario, { dia }).then((data) => {
+      const moment = require("moment");
+      require("moment/locale/pt-br");
+
+      moment.locale("pt-br");
+
+      // Ordene a lista de eventos pela data de início
+      data.sort((a, b) => moment(a.inicio).diff(moment(b.inicio)));
+
+      // Crie um objeto vazio para armazenar os eventos ordenados por mês/ano
       const eventosPorMesAno = {};
 
-      data.forEach((evento) => {
-        const dataInicio = new Date(evento.inicio);
-        const mesAno = `${dataInicio.toLocaleString("default", {
-          month: "long",
-        })} ${dataInicio.getFullYear()}`;
-
+      // Percorra a lista de eventos ordenada e agrupe-os por mês/ano no objeto criado anteriormente
+      for (const evento of data) {
+        const mesAno = moment(evento.inicio)
+          .locale("pt-br")
+          .format("MMMM/YYYY");
         if (!eventosPorMesAno[mesAno]) {
-          eventosPorMesAno[mesAno] = {
-            mes: dataInicio
-              .toLocaleString("default", { month: "long" })
-              .toUpperCase(),
-            dados: [],
-          };
+          eventosPorMesAno[mesAno] = [];
         }
+        eventosPorMesAno[mesAno].push(evento);
+      }
 
-        eventosPorMesAno[mesAno].dados.push(evento);
-      });
+      // Crie um array de objetos para representar o resultado final, ordenando as chaves do objeto eventosPorMesAno de forma crescente
+      const resultado = Object.keys(eventosPorMesAno)
+        .sort((a, b) => moment(a, "MMMM/YYYY").diff(moment(b, "MMMM/YYYY")))
+        .map((mesAno) => ({
+          mes: mesAno.toUpperCase(),
+          dados: eventosPorMesAno[mesAno].sort((a, b) =>
+            moment(a.inicio).diff(moment(b.inicio))
+          ),
+        }));
+      setCalendario(resultado);
 
-      const eventosOrdenados = Object.values(eventosPorMesAno).sort((a, b) => {
-        const dataInicioA = new Date(a.dados[0].inicio);
-        const dataInicioB = new Date(b.dados[0].inicio);
-        return dataInicioA - dataInicioB;
-      });
-
-      setCalendario(eventosOrdenados);
     });
 
     //buscando as informações dos grupos de oração

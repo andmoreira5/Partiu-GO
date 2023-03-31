@@ -27,7 +27,7 @@ export const formacoes =`
 `
 
 export const calendario = `
-*[_type == "calendario"]{
+*[_type == "calendario" && inicio >= $dia]{
   descricao, horario, local, inicio, 
     fim, nivel
 }

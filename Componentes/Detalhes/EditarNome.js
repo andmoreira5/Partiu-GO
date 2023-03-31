@@ -39,8 +39,7 @@ export default function EditarNome() {
       tx.executeSql("select * from usuario", [], (_, { rows: { _array } }) => {
         //tabela usuario indica os dados do usuário atual
         if (_array.length > 0) {
-          tx.executeSql( "update usuario set nome where id = " + _array[0].id, [novoNome] );
-          console.log('nome atualizado')
+          tx.executeSql( "update usuario set nome = ? where id = " + _array[0].id, [novoNome] );
         } 
       });
     });

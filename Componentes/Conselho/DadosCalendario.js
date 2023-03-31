@@ -25,8 +25,8 @@ export default function DadosCalendario(props){
 
     function lerGrupo(el){
         return <View style={estilo.blocoMes}>
-            <TituloAmarelo  conteudo={el.mes + '/' + el.ano}/>
-                {el.content.map((element)=>lerDados(element))}
+            <TituloAmarelo  conteudo={el.mes }/>
+                {el.dados.map((element)=>lerDados(element))}
         </View>
     }
 
