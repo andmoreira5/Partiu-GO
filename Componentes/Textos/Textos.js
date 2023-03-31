@@ -24,13 +24,13 @@ export function TextoComum(props){
 
 export function TextoComumCinza(props){
     return(
-        <Text style={estiloTextos.textoComumCinza} >{props.conteudo}</Text>
+        <Text style={estiloTextos.textoComumCinza} className='pb-1' >{props.conteudo}</Text>
     );
 }
 
 export function TextoComumLaranja(props){
     return(
-        <Text style={estiloTextos.textoComumLaranja} >{props.conteudo}</Text>
+        <Text style={estiloTextos.textoComumLaranja} className='font-bold py-1' >{props.conteudo}</Text>
     );
 }
 

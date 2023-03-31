@@ -55,7 +55,7 @@ export default function Detalhes(){
             style={[estilo.container, {marginBottom:-5 }]}>
                 
                 <EditarNome />
-                <FaleComigo dadosImagem={dadosImagem}/>
+                <FaleComigo />
 
         </LinearGradient>
     </ScrollView>

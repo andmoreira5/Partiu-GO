@@ -4,24 +4,25 @@ import {View} from 'react-native'
 import { TituloAmarelo } from '../Textos/Textos'
 import Card from '../Card/Card'
 import estilo from './estiloConselho'
+import { urlFor } from '../Database/sanity'
 
 export default function DadosComFoto(props){
 
     // console.log(props.dados[0].grupoFormativo[0])
 
     function lerDados(el){
-        return <Card img={{uri: el.url}} titulo={el.titulo} descricao={el.descricao} />
+        return <Card img={{uri: urlFor(el.imagem).url()}} titulo={el.nome} descricao={el.descricao} />
     }
 
     function lerGrupo(el){
-        return <View>
-            <TituloAmarelo  conteudo={el.grupo.replace('_', ' ').replace('Mod', 'Mód').replace('mat', 'mát').replace('asi', 'ási').replace('den', 'dên').replace('teri', 'téri')}/>
-                {el.content.map((element)=>lerDados(element))}
+        return <View className='items-center justify-center pb-7'>
+            <TituloAmarelo  conteudo={el.grupo}/>
+                {el.dados.map((element)=>lerDados(element))}
         </View>
     }
 
     return(
-        <View style={estilo.containerScroll}>
+        <View className='items-center justify-center w-full '>
               {props.dados.map((el)=>lerGrupo(el))}
          </View>
     );

@@ -7,7 +7,7 @@ import DadosCalendario from "./DadosCalendario";
 import DadosComFoto from "./DadosComFoto";
 import estilo from './estiloConselho'
 
-export default function Conselho(props){
+export default function ContainerDados(props){
 
     const imgFundo = require('../../assets/img/fundo.jpg')
 

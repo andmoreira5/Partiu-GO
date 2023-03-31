@@ -6,14 +6,14 @@ import { View, Image } from "react-native";
 import estilo from "./estilosSplash";
 import { TituloSplash } from "../Textos/Textos";
 import { Context } from "../Contexto";
-import { lerDiaDaSemana, lerDiaDeHoje } from "../FuncoesLogicas/LerHorarioDia";
+import { lerDiaDeHoje } from "../FuncoesLogicas/LerHorarioDia";
 import { useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
 import NetInfo from "@react-native-community/netinfo";
 import { Dimensions } from "react-native";
 import * as SQLite from "expo-sqlite";
 import client from "../Database/sanity";
-import { grupos, tema } from "../Database/scritpsBusca";
+import { conselho, formacoes, grupos, tema } from "../Database/scritpsBusca";
 
 export default function SplashBoasVindas() {
   const {
@@ -27,7 +27,7 @@ export default function SplashBoasVindas() {
   const navigation = useNavigation();
   const [animacao, setAnimacao] = useState(require("../../assets/cat.json"));
   const [textoAnimacao, setTextoAnimacao] = useState("Olá!");
-  var telaParaNavegar
+  var telaParaNavegar;
   // const [estaConectado, setEstaConectado] = useState(true);
   // lerNomeUsuario();
 
@@ -38,7 +38,6 @@ export default function SplashBoasVindas() {
         tx.executeSql(
           "create table if not exists usuario (id integer primary key not null, nome text);"
         ); //uso  0 (não usar digital), 1 (usar digital)
-        
       });
 
       db.transaction((tx) => {
@@ -46,13 +45,12 @@ export default function SplashBoasVindas() {
           "select * from usuario",
           [],
           (_, { rows: { _array } }) => {
-            console.log(_array)
             //tabela usuario indica os dados do usuário atual
             if (_array.length > 0) {
               setNomeUsuario(_array[0].nome);
-              telaParaNavegar='Principal'
+              telaParaNavegar = "Principal";
             } else {
-              telaParaNavegar = "SplashInicial01"
+              telaParaNavegar = "SplashInicial01";
             }
           }
         );
@@ -75,10 +73,27 @@ export default function SplashBoasVindas() {
     return;
   }, []);
 
+  const organizarDados = (data) => {
+    return Object.values(data.reduce((acumulador, obj) => {
+      if (!acumulador[obj.grupo]) {
+        acumulador[obj.grupo] = {
+          grupo: obj.grupo,
+          dados: []
+        };
+      }
+      acumulador[obj.grupo].dados.push(obj);
+      return acumulador;
+    }, {}));
+  }
+
   const buscarDados = async () => {
     const dia = lerDiaDeHoje();
     //buscando os temas
-    client.fetch(tema, { dia }).then((data)  => setTemas(data));
+    client.fetch(tema, { dia }).then((data) => setTemas(data))
+
+    client.fetch(formacoes).then((data) => { setFormacoes(organizarDados(data)) })
+    
+    client.fetch(conselho).then((data) => { setConselho(organizarDados(data)) })
 
     //buscando as informações dos grupos de oração
     client.fetch(grupos).then((data) => {
@@ -88,126 +103,7 @@ export default function SplashBoasVindas() {
         navigation.navigate(telaParaNavegar);
       }, 5000);
     });
-
- //codigo teste
-    // var temasO = [
-    //   {
-    //     tema: 'Armadura de Deus',
-    //     grupo: {
-    //       nome: 'Nossa Senhora',
-    //       horario:'18h30',
-    //       local: 'Capela',
-    //       endereco: 'Olho Dagua'
-    //     }
-    //   }
-    // ]
-    // setTemas(temasO)
-    // var grupoO = [
-    //   {
-    //       nome: 'Nossa Senhora',
-    //       horario:'18h30',
-    //       local: 'Capela',
-    //       endereco: 'Olho Dagua',
-    //       diaDaSemana: {
-    //         descricao:'Domingo'
-    //       }
-        
-    //   }
-    // ]
-    // setGrupos(grupoO)
-
-    // setTimeout(() => {
-    //   navigation.navigate(telaParaNavegar);
-    // }, 5000);
-  
-
-
-
-    
   };
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  //   //busca dos dados de formação
-  //   const responseFormatado = await busca(buscarFormacoes);
-  //   var formacoes = [];
-  //   responseFormatado.data.formacaos.data.map((item) => {
-  //     var materiais = [];
-  //     item.attributes.item.map((el) => {
-  //       var objeto = {
-  //         url: server + el.capa.data.attributes.url,
-  //         titulo: el.titulo,
-  //         descricao: el.descricao,
-  //       };
-  //       materiais.push(objeto);
-  //     });
-  //     var obj = {
-  //       grupo: item.attributes.grupo,
-  //       content: materiais,
-  //     };
-  //     formacoes.push(obj);
-  //   });
-  //   setFormacoes(formacoes);
-
-  //   //busca dos dados de conselho
-  //   const responseFormatadoConselho = await busca(buscarConselho);
-  //   var conselho = [];
-  //   responseFormatadoConselho.data.conselhos.data.map((item) => {
-  //     var data = [];
-  //     item.attributes.item.map((el) => {
-  //       var objeto = {
-  //         url: server + el.capa.data.attributes.url,
-  //         titulo: el.titulo,
-  //         descricao: el.descricao,
-  //       };
-  //       data.push(objeto);
-  //     });
-  //     var obj = {
-  //       grupo: item.attributes.grupo,
-  //       content: data,
-  //     };
-  //     conselho.push(obj);
-  //   });
-  //   setConselho(conselho);
-
-  //   //busca dos dados de calendario
-  //   const responseFormatadoCalendario = await busca(buscarCalendario, {
-  //     day: lerDiaDeHoje(),
-  //   });
-  //   var calendario = [];
-  //   responseFormatadoCalendario.data.calendarios.data.map((item) => {
-  //     var data = [];
-  //     item.attributes.Eventos.map((el) => {
-  //       var objeto = {
-  //         descricao: el.Descricao,
-  //         inicio: el.Inicio,
-  //         fim: el.Fim,
-  //         endereco: el.Endereco,
-  //         horario: el.Horario,
-  //       };
-  //       data.push(objeto);
-  //     });
-  //     var obj = {
-  //       mes: item.attributes.Mes,
-  //       ano: item.attributes.Ano,
-  //       content: data,
-  //     };
-  //     calendario.push(obj);
-  //   });
-  //   setCalendario(calendario);
-  // };
-
-  // }, []);
 
   return (
     <View style={estilo.containerBoasVindas}>

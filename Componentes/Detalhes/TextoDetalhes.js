@@ -7,9 +7,9 @@ import { View } from "react-native";
 
 export default function TextoDetalhes(props){
     return(
-        <View style={estilo.container}>
-            <Text style={estilo.titulo}>{props.titulo}</Text>
-            <Text style={estilo.descricao}>{props.descricao}</Text>
+        <View  style={estilo.container} >
+            <Text className='text-white font-bold  border-b-white border-b-2 mb-2 pb-2' >{props.titulo}</Text>
+            <Text className='text-white opacity-80 text-justify'>{props.descricao}</Text>
         </View>
     )
 }
@@ -21,16 +21,5 @@ const estilo = StyleSheet.create({
         backgroundColor:'#0003',
         padding:15,
         width:Dimensions.get('window').width*0.7
-    },
-    titulo:{
-        fontWeight:'bold',
-        borderBottomColor:'white',
-        borderBottomWidth:1,
-        paddingBottom:5,
-        marginBottom:5,
-    }, 
-    descricao:{
-        fontSize:16,
-    },
-    
+    },    
 })

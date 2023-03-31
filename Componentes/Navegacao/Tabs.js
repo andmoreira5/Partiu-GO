@@ -1,5 +1,5 @@
 import { createBottomTabNavigator  } from "@react-navigation/bottom-tabs";
-import Conselho from "../Conselho/Conselho";
+import ContainerDados from "../Conselho/ContainerDados";
 import Home from "../Home/Home";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Context } from "../Contexto";
@@ -10,8 +10,6 @@ import Detalhes from "../Detalhes/Detalhes";
 
 const Tab = createBottomTabNavigator()
 
-
-// }, [])
 const Tabs = () => {
     const [iconHom, setIconHom] = useState([styles.iconTabRound, 'home'])
     const [iconFormacoes, setIconFormacoes] = useState(['', 'book-outline'])
@@ -83,7 +81,7 @@ const Tabs = () => {
                         setIconFormacoes(['', 'book-outline'])
                     }
                 }} 
-                children={() => <Conselho titulo={"Processo Formativo"} dados={formacoes} isCalendario={false}/>}  />
+                children={() => <ContainerDados titulo={"Processo Formativo"} dados={formacoes} isCalendario={false}/>}  />
 
             <Tab.Screen
                 listeners={{
@@ -94,7 +92,7 @@ const Tabs = () => {
                         setIconCalendario(['', 'calendar-outline'])
                     }
                 }} 
-                name="Eventos" children={() => <Conselho titulo={"Calendário"} dados={calendario}  isCalendario={true}/>} />
+                name="Eventos" children={() => <ContainerDados titulo={"Calendário"} dados={calendario}  isCalendario={true}/>} />
 
                 <Tab.Screen  listeners={{
                     tabPress: (e) =>{
@@ -114,7 +112,7 @@ const Tabs = () => {
                         setIconConselho(['', 'account-outline'])
                     }
                 }} 
-                name="Conselho" children={() => <Conselho titulo={"Conselho da Cidade"} dados={conselho}  isCalendario={false}/>} />
+                name="Conselho" children={() => <ContainerDados titulo={"Conselho RCC Missão Velha"} dados={conselho}  isCalendario={false}/>} />
             
             <Tab.Screen
                 listeners={{

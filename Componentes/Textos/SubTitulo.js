@@ -4,12 +4,12 @@ import {View, Text} from 'react-native'
 
 export default function SubTitulo(props){
     return(
-        <View style={{flexDirection: 'row', alignItems: 'center', marginBottom:20}}>
-        <View style={{flex: 1, height: 2, backgroundColor: 'white'}} />
+        <View className='flex-row items-center mb-5'>
+        <View className='h-0.5 bg-white flex-1' />
         <View>
-            <Text style={{marginHorizontal:10, textAlign: 'center'}}>{props.subTitulo}</Text>
+            <Text className='mx-4 text-white font-bold text-center'>{props.subTitulo}</Text>
         </View>
-        <View style={{flex: 1, height: 2, backgroundColor: 'white'}} />
+        <View className='h-0.5 bg-white flex-1'  />
         </View>
     )
 }
