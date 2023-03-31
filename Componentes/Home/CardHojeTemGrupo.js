@@ -26,7 +26,7 @@ export default function CardHojeTemGrupo(props){
                     icon='location-arrow'
                     break
             }
-            return <View className='items-center flex-row'>
+            return <View className='items-center flex-row  mb-4'>
                 <Icon name={icon} size={20} color='black'/>
                 <Text key={value} style={estilo.texto}>{value}</Text>
             </View>

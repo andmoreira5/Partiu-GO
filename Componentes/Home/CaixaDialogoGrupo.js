@@ -44,6 +44,20 @@ export default function CaixaDialogoGrupo() {
           };
           temaDeHoje.push(item);
         });
+
+        temaDeHoje.forEach(tema => {
+          for (let i = 0; i < grupoDeHoje.length; i++) {
+            if (tema.nome === grupoDeHoje[i].nome) {
+              grupoDeHoje.splice(i, 1);
+            }
+          }
+        });
+        grupoDeHoje.forEach(grupo => {
+          grupo.tema = 'Sem tema';
+        });
+
+        temaDeHoje = temaDeHoje.concat(grupoDeHoje)
+
         setArrayParaExibir(temaDeHoje);
       }
     }
