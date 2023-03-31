@@ -1,5 +1,5 @@
 //Componente Detalhes dá algumas informações e a possibilidade de mudar o nome de usuário
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { View, ScrollView ,  Image, Dimensions } from "react-native";
 import LottieView from 'lottie-react-native'
 import { TituloBranco } from "../Textos/Textos";
@@ -7,29 +7,12 @@ import estilo from '../Conselho/estiloConselho'
 import { LinearGradient } from "expo-linear-gradient";
 import TextoDetalhes from "./TextoDetalhes";
 import { cores } from "../Configuracoes/Configuracoes";
-import busca from "../Servidor/busca";
-import { buscarDesenvolvedor } from "../Dados/Queries";
-import { server } from "../Servidor";
 import FaleComigo from "./FaleComigo";
 import { StyleSheet } from "react-native";
 import EditarNome from "./EditarNome";
 
 
 export default function Detalhes(){
-    const [dadosImagem, setDadosImagem] = useState([])
-
-    useEffect(()=>{
-        const carregar = async () => {
-            const response = await busca(buscarDesenvolvedor)
-            var obj = {
-                nome: response.data.desenvolvedor.data.attributes.Nome,
-                descricao: response.data.desenvolvedor.data.attributes.Descricao,
-                url: server + response.data.desenvolvedor.data.attributes.Foto.data.attributes.url
-            }
-            setDadosImagem(obj)
-        } 
-        carregar()
-    }, [])
 
    return(
     <>

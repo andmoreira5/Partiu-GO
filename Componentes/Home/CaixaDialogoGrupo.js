@@ -20,7 +20,6 @@ export default function CaixaDialogoGrupo() {
     var grupoDeHoje = [];
     var hoje = lerDiaDaSemana();
     grupos?.map((el) => {
-      console.log(el);
       if (el.diaDaSemana == hoje) {
         grupoDeHoje.push(el);
       }

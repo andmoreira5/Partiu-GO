@@ -13,7 +13,13 @@ import NetInfo from "@react-native-community/netinfo";
 import { Dimensions } from "react-native";
 import * as SQLite from "expo-sqlite";
 import client from "../Database/sanity";
-import { conselho, formacoes, grupos, tema } from "../Database/scritpsBusca";
+import {
+  calendario,
+  conselho,
+  formacoes,
+  grupos,
+  tema,
+} from "../Database/scritpsBusca";
 
 export default function SplashBoasVindas() {
   const {
@@ -74,26 +80,98 @@ export default function SplashBoasVindas() {
   }, []);
 
   const organizarDados = (data) => {
-    return Object.values(data.reduce((acumulador, obj) => {
-      if (!acumulador[obj.grupo]) {
-        acumulador[obj.grupo] = {
-          grupo: obj.grupo,
-          dados: []
-        };
-      }
-      acumulador[obj.grupo].dados.push(obj);
-      return acumulador;
-    }, {}));
-  }
+    return Object.values(
+      data.reduce((acumulador, obj) => {
+        if (!acumulador[obj.grupo]) {
+          acumulador[obj.grupo] = {
+            grupo: obj.grupo,
+            dados: [],
+          };
+        }
+        acumulador[obj.grupo].dados.push(obj);
+        return acumulador;
+      }, {})
+    );
+  };
 
   const buscarDados = async () => {
     const dia = lerDiaDeHoje();
     //buscando os temas
-    client.fetch(tema, { dia }).then((data) => setTemas(data))
+    client.fetch(tema, { dia }).then((data) => setTemas(data));
 
-    client.fetch(formacoes).then((data) => { setFormacoes(organizarDados(data)) })
-    
-    client.fetch(conselho).then((data) => { setConselho(organizarDados(data)) })
+    client.fetch(formacoes).then((data) => {
+      var dadosOrganizados = organizarDados(data);
+      // Ordena o array de objetos pelo grupo em ordem decrescente
+      dadosOrganizados.sort((a, b) => b.grupo.localeCompare(a.grupo));
+
+      // Ordena cada objeto "dados" pelo valor da propriedade "ordem" em ordem crescente
+      dadosOrganizados.forEach((obj) => {
+        obj.dados.sort((a, b) => a.ordem - b.ordem);
+      });
+
+      setFormacoes(dadosOrganizados);
+    });
+
+    client.fetch(conselho).then((data) => {
+      var dadosOrganizados = organizarDados(data);
+      function compare(a, b) {
+        // Compara os grupos
+        if (a.grupo < b.grupo) {
+          return 1;
+        }
+        if (a.grupo > b.grupo) {
+          return -1;
+        }
+
+        // Se os grupos são iguais, compara os nomes em ordem crescente
+        if (a.nome < b.nome) {
+          return -1;
+        }
+        if (a.nome > b.nome) {
+          return 1;
+        }
+
+        return 0;
+      }
+
+      // Ordena o JSON
+      dadosOrganizados.forEach((item) => {
+        item.dados.sort(compare);
+      });
+
+      dadosOrganizados.sort(compare);
+      setConselho(dadosOrganizados);
+    });
+
+    client.fetch(calendario).then((data) => {
+      const eventosPorMesAno = {};
+
+      data.forEach((evento) => {
+        const dataInicio = new Date(evento.inicio);
+        const mesAno = `${dataInicio.toLocaleString("default", {
+          month: "long",
+        })} ${dataInicio.getFullYear()}`;
+
+        if (!eventosPorMesAno[mesAno]) {
+          eventosPorMesAno[mesAno] = {
+            mes: dataInicio
+              .toLocaleString("default", { month: "long" })
+              .toUpperCase(),
+            dados: [],
+          };
+        }
+
+        eventosPorMesAno[mesAno].dados.push(evento);
+      });
+
+      const eventosOrdenados = Object.values(eventosPorMesAno).sort((a, b) => {
+        const dataInicioA = new Date(a.dados[0].inicio);
+        const dataInicioB = new Date(b.dados[0].inicio);
+        return dataInicioA - dataInicioB;
+      });
+
+      setCalendario(eventosOrdenados);
+    });
 
     //buscando as informações dos grupos de oração
     client.fetch(grupos).then((data) => {

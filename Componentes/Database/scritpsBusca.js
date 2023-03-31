@@ -22,6 +22,13 @@ export const conselho = `
 
 export const formacoes =`
 *[_type == "formacao"]{
-  nome, descricao, imagem, grupo
+  nome, descricao, imagem, grupo, ordem
+}
+`
+
+export const calendario = `
+*[_type == "calendario"]{
+  descricao, horario, local, inicio, 
+    fim, nivel
 }
 `
