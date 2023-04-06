@@ -1,15 +1,18 @@
 {
   "expo": {
-    "name": "Partiu-GO",
+    "name": "Partiu Grupo de Oração",
     "slug": "Partiu-GO",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,10 +24,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.and.moreira5.PartiuGO",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8b07f7e5-abac-47e0-a5c6-baa19a579168"
+      }
     }
   }
 }

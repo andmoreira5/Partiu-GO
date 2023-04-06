@@ -8,13 +8,13 @@ export default function CardCalendario(props){
     const [ corDestaqueEvento, setCorDestaqueEvento ] = useState()
 
     useEffect(()=>{
-        if(props.nivel=='LOCAL'){
-            setCorDestaqueEvento('#ffca0a')
-        }else if(props.nivel=='DIOCESANO'){
+        if(props.dados.nivel=='LOCAL'){
+            setCorDestaqueEvento('#7d6305')
+        }else if(props.dados.nivel=='DIOCESANO'){
             setCorDestaqueEvento('#013f58')
-        }else if(props.nivel=='ESTADUAL'){
+        }else if(props.dados.nivel=='ESTADUAL'){
             setCorDestaqueEvento('#a3420d')
-        }else if(props.nivel=='NACIONAL'){
+        }else if(props.dados.nivel=='NACIONAL'){
             setCorDestaqueEvento('#007e3e')
         }else{
             setCorDestaqueEvento('#730041')

@@ -35,7 +35,7 @@ export default function Detalhes(){
         </LinearGradient>
         <LottieView style={{width:'100%'}}  source={require('../../assets/gato-banho.json')} autoPlay loop />
         <LinearGradient colors={[cores.tom2Detalhes, cores.tom3Detalhes]}
-            style={[estilo.container, {marginBottom:-5 }]}>
+            style={[estilo.container, {marginBottom:-5, marginTop:-3 }]}>
                 
                 <EditarNome />
                 <FaleComigo />
