@@ -53,9 +53,11 @@ const estilo = StyleSheet.create({
         opacity:0.8, 
         marginHorizontal:20,  
         borderRadius:20, 
-        padding:20, 
+        paddingHorizontal:20,
+        paddingTop:17, 
+        paddingBottom:3,
         width:Dimensions.get('window').width*0.7, 
-        elevation:20
+        // elevation:0
     },
     titulo:{
         color:'black', 

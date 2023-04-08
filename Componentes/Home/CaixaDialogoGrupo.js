@@ -61,14 +61,15 @@ export default function CaixaDialogoGrupo() {
         setArrayParaExibir(temaDeHoje);
       }
     }
+    setArrayParaExibir(grupos)
   }, []);
 
   return (
     <>
-      {temGrupo ? (
+      {!temGrupo ? (
         <View style={{ height: 310 }}>
           <Text className="text-center font-bold text-white border-b-2 border-white mb-4 pb-4 text-lg">
-            HOJE TEM GRUPO DE ORAÇÃO
+            HOJE TEM GRUPO DE ORAÇÃO{'\n'}EM MISSÃO VELHA - CE
           </Text>
           <ScrollView horizontal={true}>
             {arrayParaExibir.map((el, index) => {

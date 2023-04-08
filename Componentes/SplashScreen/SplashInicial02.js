@@ -1,6 +1,6 @@
 import React, { useContext }  from 'react';
 import estilo from './estilosSplash.js';
-import {View} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
 import { TituloAmarelo, TituloBranco } from '../Textos/Textos.js';
@@ -24,6 +24,7 @@ export default function SplashInicial02(){
   
   return(
     <>
+    <StatusBar backgroundColor="#bfe4f6" barStyle='dark-content' />
       <LottieView style={estilo.aviao} source={require('../../assets/aviao.json')} autoPlay loop />
       <LinearGradient
         // Button Linear Gradient

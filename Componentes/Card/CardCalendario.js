@@ -11,7 +11,7 @@ export default function CardCalendario(props){
         if(props.dados.nivel=='LOCAL'){
             setCorDestaqueEvento('#7d6305')
         }else if(props.dados.nivel=='DIOCESANO'){
-            setCorDestaqueEvento('#013f58')
+            setCorDestaqueEvento('#025678')
         }else if(props.dados.nivel=='ESTADUAL'){
             setCorDestaqueEvento('#a3420d')
         }else if(props.dados.nivel=='NACIONAL'){

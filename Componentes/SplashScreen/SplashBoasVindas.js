@@ -2,7 +2,7 @@
 //Aqui também faremos a conexão com o servidor pra ver se tem dado novo.
 
 import React, { useEffect, useContext, useState } from "react";
-import { View, Image } from "react-native";
+import { View, Image, StatusBar, Dimensions } from "react-native";
 import estilo from "./estilosSplash";
 import { TituloSplash } from "../Textos/Textos";
 import { Context } from "../Contexto";
@@ -10,7 +10,6 @@ import { lerDiaDeHoje } from "../FuncoesLogicas/LerHorarioDia";
 import { useNavigation } from "@react-navigation/native";
 import LottieView from "lottie-react-native";
 import NetInfo from "@react-native-community/netinfo";
-import { Dimensions } from "react-native";
 import * as SQLite from "expo-sqlite";
 import client from "../Database/sanity";
 import {
@@ -191,6 +190,7 @@ export default function SplashBoasVindas() {
 
   return (
     <View style={estilo.containerBoasVindas}>
+      <StatusBar backgroundColor="#f2f2f2" barStyle='dark-content' />
       <Image
         style={estilo.logoBoasVindas}
         source={require("../../assets/logo.png")}

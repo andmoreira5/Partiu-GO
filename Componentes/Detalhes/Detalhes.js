@@ -10,6 +10,8 @@ import { cores } from "../Configuracoes/Configuracoes";
 import FaleComigo from "./FaleComigo";
 import { StyleSheet } from "react-native";
 import EditarNome from "./EditarNome";
+import ListaDeGrupos from "./ListaDeGrupos";
+import SubTitulo from "../Textos/SubTitulo";
 
 
 export default function Detalhes(){
@@ -37,7 +39,15 @@ export default function Detalhes(){
         <LinearGradient colors={[cores.tom2Detalhes, cores.tom3Detalhes]}
             style={[estilo.container, {marginBottom:-5, marginTop:-3 }]}>
                 
+                <View>
+                    <SubTitulo subTitulo = 'Grupos de Oração'/>
+                    <ListaDeGrupos />
+                </View>
+
                 <EditarNome />
+
+                
+
                 <FaleComigo />
 
         </LinearGradient>

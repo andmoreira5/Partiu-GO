@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Image, View, StatusBar} from 'react-native';
 import estilo from './estilosSplash.js';
 import { LinearGradient } from 'expo-linear-gradient';
 import TextosSplash01 from './TextosSplash01'
@@ -11,6 +11,7 @@ export default function SplashInicial(){
 
   return(
     <View style={estilo.container}>
+      <StatusBar backgroundColor="#fff" barStyle='light-content' />
       <Image style={estilo.imagem} source={require('../../assets/logo.png')} />
       <LottieView style={estilo.ondas}  source={require('../../assets/ondas.json')} autoPlay loop />
       <LinearGradient
