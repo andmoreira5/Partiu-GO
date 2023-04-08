@@ -40,7 +40,7 @@ export default function Detalhes(){
             style={[estilo.container, {marginBottom:-5, marginTop:-3 }]}>
                 
                 <View>
-                    <SubTitulo subTitulo = 'Grupos de Oração'/>
+                    <SubTitulo subTitulo = {'Grupos de Oração\nRCC Missão Velha - CE'}/>
                     <ListaDeGrupos />
                 </View>
 

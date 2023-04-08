@@ -50,7 +50,7 @@ export default function EditarNome() {
 
   return (
     <View >
-      <SubTitulo subTitulo="Alterar Nome" />
+      <SubTitulo subTitulo="Alterar Seu Nome" />
       <View
         style={[estilo.alinhamentoHorizontal, { justifyContent: "center" }]}
       >

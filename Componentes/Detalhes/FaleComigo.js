@@ -24,7 +24,9 @@ export default function FaleComigo(props) {
         <Text className='pl-4 text-white text-sm'>
           Fale com o desenvolvedor
         </Text>
+        
       </TouchableOpacity>
+      <Text className='mb-10 text-center text-white -mt-4'>ANDERSON MOREIRA{'\n'}Analista de Tecnologia da Informação</Text>
       {/* <Card  img={{uri: props.dadosImagem.url}} titulo={props.dadosImagem.nome} descricao={props.dadosImagem.descricao} /> */}
     </View>
   );
