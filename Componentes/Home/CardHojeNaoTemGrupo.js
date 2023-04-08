@@ -74,13 +74,13 @@ export default function CardHojeNaoTemGrupo(){
                 <TouchableOpacity className="items-center" onPress={() => {
                     if(!verGrupos){
                       fadeOut(opacityInicial)
-                      setTimeout(()=>setVerGrupos(!verGrupos), 100)
-                      setTimeout(()=>fadeIn(opacityGrupos), 700)
+                      setTimeout(()=>setVerGrupos(!verGrupos), 200)
+                      setTimeout(()=>fadeIn(opacityGrupos), 1000)
                       
                     }else{
                       fadeOut(opacityGrupos)
                       setTimeout(()=>setVerGrupos(!verGrupos), 400)
-                      setTimeout(()=>fadeIn(opacityInicial), 700)
+                      setTimeout(()=>fadeIn(opacityInicial), 1000)
                     }
                   }}>
                 <Text className="p-2 mb-3 text-white rounded-lg px-4" style={{ backgroundColor: '#704220' }}>
