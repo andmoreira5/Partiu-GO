@@ -9,12 +9,15 @@ export default function ContextoProvider({children}){
   const [formacoes, setFormacoes] = useState([])
   const [conselho, setConselho] = useState([])
   const [calendario, setCalendario] = useState([])
+  const [telaInicialUncometro, setTelaInicialUncometro] = useState(true)
 
   return <Context.Provider value={{temas, setTemas, 
     nomeUsuario, setNomeUsuario, 
     grupos, setGrupos, 
     formacoes, setFormacoes,
     conselho, setConselho,
-    calendario, setCalendario}}>{children}</Context.Provider>
+    calendario, setCalendario,
+    telaInicialUncometro, setTelaInicialUncometro
+  }}>{children}</Context.Provider>
 
 }
