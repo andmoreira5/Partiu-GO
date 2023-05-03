@@ -1,112 +1,133 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Animated, View, Text, TouchableOpacity } from "react-native";
-import { ProgressCircle } from "react-native-svg-charts";
 import { Context } from "../Contexto";
-
-const AnimatedProgressCircle = Animated.createAnimatedComponent(ProgressCircle);
+import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { Audio } from 'expo-av'
 
 const ResultadoUncometro = () => {
-  const [mensagem, setMensagem] = useState("");
-  const [velocidadeLabel, setVelocidadeLabel] = useState(0)
-  const [count, setCount] = useState(0);
-//   const [progress, setProgress] = useState((Math.random() * 1).toFixed(2));
-  const [progress, setProgress] = useState(0.81);
+  const [mensagem, setMensagem] = useState("Aguardando resultado...");
+  const [progress, setProgress] = useState(Math.round(Math.random() * 100));
+  // const [progress, setProgress] = useState(25);
+  const [value, setValue] = useState(0)
   const { setTelaInicialUncometro } = useContext(Context);
-  const [animatedProgress, setAnimatedProgress] = useState(
-    new Animated.Value(0)
-  );
   const [showText, setShowText] = useState(false);
+  const [sound, setSound] = useState();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowText(true);
-    }, 100);
-  }, []);
+  function setarMensagem(){
+    if (progress >= 0 && progress < 10) {
 
-  useEffect(() => {
-    Animated.timing(animatedProgress, {
-      toValue: progress,
-      duration: 2000,
-      useNativeDriver: false,
-    }).start();
+    } else if (progress >= 10 && progress < 20) {
 
-    if (progress >= 0 && progress < 0.1) {
-      setMensagem(
-        "Arriégua! Tá mais frio que pé de anjo!\nSeu caso tá ruim!\nSua oração pessoal tá muito afolozada!"
-      );
-      setVelocidadeLabel(100)
-    } else if (progress >= 0.1 && progress < 0.2) {
-      setMensagem(
-        "Valei-me meu padim Ciço!\nGeladeira viva!\nMerecendo uns tabefes de Padre Pio!"
-      );
-      setVelocidadeLabel(80)
-    } else if (progress >= 0.2 && progress < 0.3) {
-      setMensagem(
-        "Tá se achando cheio da unção,\nmas o negócio tá ruim pra tu!\nPrecisa rezar melhor o terço!"
-      );
-      setVelocidadeLabel(30)
-    } else if (progress >= 0.3 && progress < 0.4) {
-      setMensagem(
-        "Tá na hora de criar vergonha na cara e se converter!\nHora de fazer uma boa confissão!"
-      );
-      setVelocidadeLabel(5)
-    } else if (progress >= 0.4 && progress < 0.5) {
-      setMensagem("Tu abre do oi porque tá na mornidão!\n");
-      setVelocidadeLabel(0.5)
-    }else if(progress >=0.5 && progress < 0.6){
-        setVelocidadeLabel(0)
+    } else if (progress >= 20 && progress < 30) {
+
+    } else if (progress >= 30 && progress < 40) {
+
+    } else if (progress >= 40 && progress < 50) {
+
+    }else if(progress >= 50 && progress < 60){
+
+    }else if(progress >= 60 && progress < 70){
+
+    }else if(progress >= 70 && progress < 80){
+
+    }else if(progress >= 80 && progress < 90){
+
+    }else if(progress >= 90 && progress < 100){
+
     }
-  }, [progress]);
+  }
 
-  const interpolatedColor = animatedProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: ["rgb(255,0,0)", "rgb(0,255,0)"],
-  });
+  async function playSound() {
+    var sound, msg = ''
+    if(progress >= 0 && progress < 10){
+       sound  = (await Audio.Sound.createAsync( require('../../assets/audio/01_falta_de_vergonha.mp3') )).sound;
+       msg = "Arriégua! Tá mais frio que pé de anjo!\nDeixe de preguiça de rezar!\nSua oração pessoal tá muito afolozada!"
+    }else if(progress >= 10 && progress < 20){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/02_cascudo.mp3') )).sound;
+      msg = "Valei-me meu padim Ciço!\nSua vida espiritual tá muito coisada!\nMerecendo uns cascudos de Padre Pio!"
+    }else if(progress >= 20 && progress < 30){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/03_na_tua_cara.mp3') )).sound;
+      msg = "Tá se achando lampião da unção,\nmas o negócio tá ruim pra tu!\nPrecisa rezar melhor o terço!"
+    }else if(progress >= 30 && progress < 40){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/04_to_passado.mp3') )).sound;
+      msg = "Hora de criar vergonha na cara e se converter!\nHora de fazer uma boa confissão!"
+    }else if(progress >= 40 && progress < 50){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/05_to_bege2.mp3') )).sound;
+      msg = "Tu abre do oi porque tá na mornidão!\nMande pra baixa da égua\nseu pecado de estimação!"
+    }else if(progress >= 50 && progress < 60){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/06_to_bege1.mp3') )).sound;
+      msg = "Ô bichim(a)!\nPrecisa rebolar no mato\nessa preguiça de estudar o Catecismo!"
+    }else if(progress >= 60 && progress < 70){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/04_to_passado.mp3') )).sound;
+      msg = "Ô bichim(a)!\nPrecisa rebolar no mato\nessa preguiça de estudar o Catecismo!"
+    }else if(progress >= 70 && progress < 80){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/08_kibunitinhog.mp3') )).sound;
+      msg=''
+    }else if(progress >= 80 && progress < 90){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/09_kibunitinhoag.mp3') )).sound;
+      msg=''
+    }else if(progress >= 90 && progress <= 100){
+      sound  = (await Audio.Sound.createAsync( require('../../assets/audio/10_ta_bom_demais.mp3') )).sound;
+      msg=''
+    }
+    setMensagem(msg)
+    setSound(sound);
+    await sound.playAsync();
+  }
 
-  const interpolatedLabel = animatedProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0', '100'],
-  });
-  const [fadeAnim] = useState(new Animated.Value(0));
+  // const interpolatedColor = animatedProgress.interpolate({
+  //   inputRange: [0, 1],
+  //   outputRange: ["rgb(255,0,0)", "rgb(0,255,0)"],
+  // });
 
-  React.useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 2000,
-      useNativeDriver: false,
-    }).start();
-  }, []);
+  // const interpolatedLabel = animatedProgress.interpolate({
+  //   inputRange: [0, 1],
+  //   outputRange: ['0', '100'],
+  // });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (count < progress * 100) {
-        setCount(count + 1);
-      }
-    }, velocidadeLabel );
-
-    return () => clearInterval(interval);
-  }, [count]);
+  const getColorForPercentage = (percentage) => {
+    if (percentage <= 24) {
+      return '#0f0';
+    } else if (percentage <= 75) {
+      return '#00f';
+    } else {
+      return '#f00';
+    }
+  }
 
   return (
     <View className="items-center justify-center h-full">
       <Text className="text-white text-xl mb-5">Seu nível de unção é:</Text>
-      <View className="relative">
-        <AnimatedProgressCircle
-          style={{ height: 200, width: 200 }}
-          progress={animatedProgress}
-          progressColor={interpolatedColor}
-          strokeWidth={10}
-          backgroundColor="#ccc"
-          cornerRadius={100}
-        />
-        <Text className="absolute self-center text-center top-20 text-4xl text-gray-300">
-          {count}%
-        </Text>
-      </View>
+    
+      <AnimatedCircularProgress
+              size={170}
+              width={18}
+              duration={7000}
+              backgroundWidth={15}
+              rotation={0}
+              backgroundColor="#777"
+              fill={progress}
+              arcSweepAngle={360}
+              tintColor={getColorForPercentage(value)}
+              padding={10}
+              onAnimationComplete={playSound}
+            >
+              {(num) => (
+                <>
+                  <Text  className='text-white text-3xl font-bold' >
+                    {setValue(num)}
+                    {Math.round(num)}%
+                  </Text>
+                </>
+              )}
+            </AnimatedCircularProgress>
       <Text className="text-white m-7 text-center">{mensagem}</Text>
 
       <TouchableOpacity 
-      onPress={()=>setTelaInicialUncometro(true)}
+      onPress={()=>{
+        setMensagem('Aguardando resultado...')
+        setTelaInicialUncometro(true)
+      }}
       className="bg-gray-600 p-5 m-5 rounded-2xl">
         <Text className="text-white">REFAZER TESTE</Text>
       </TouchableOpacity>
