@@ -9,7 +9,7 @@ export default function HomeUncometro() {
 
   const [iniciando, setIniciando] = useState(true);
   const [conteudo, setConteudo] = useState({
-    texto: "Para começar, toque o botao abaixo:",
+    texto: "Para começar, toque o botão abaixo:",
     lottie: require("../../assets/fingerprint.json"),
   });
   const animationRef = useRef(null);
@@ -21,7 +21,7 @@ export default function HomeUncometro() {
   useEffect(() => {
     if (iniciando) {
       setConteudo({
-        texto: "Para começar, toque o botao abaixo:",
+        texto: "Para começar, toque o botão abaixo:",
         lottie: require("../../assets/fingerprint.json"),
       });
     } else {
@@ -37,7 +37,7 @@ export default function HomeUncometro() {
 
   return (
     <View>
-      <Text className="text-white font-bold text-base mx-4">
+      <Text className="text-white font-bold text-base mx-4 text-center">
         {conteudo.texto}
       </Text>
       <TouchableOpacity
