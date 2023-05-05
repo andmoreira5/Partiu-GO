@@ -12,7 +12,6 @@ import { StyleSheet } from "react-native";
 import EditarNome from "./EditarNome";
 import ListaDeGrupos from "./ListaDeGrupos";
 import SubTitulo from "../Textos/SubTitulo";
-import Extras from "./Extras";
 
 
 export default function Detalhes(){
@@ -46,8 +45,6 @@ export default function Detalhes(){
                 </View>
 
                 <EditarNome />
-
-                <Extras />
 
                 <FaleComigo />
 

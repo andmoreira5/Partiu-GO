@@ -42,7 +42,7 @@ export default function SplashBoasVindas() {
       db.transaction((tx) => {
         tx.executeSql(
           "create table if not exists usuario (id integer primary key not null, nome text);"
-        ); //uso  0 (não usar digital), 1 (usar digital)
+        );
       });
 
       db.transaction((tx) => {
@@ -101,7 +101,26 @@ export default function SplashBoasVindas() {
     client.fetch(formacoes).then((data) => {
       var dadosOrganizados = organizarDados(data);
       // Ordena o array de objetos pelo grupo em ordem decrescente
-      dadosOrganizados.sort((a, b) => b.grupo.localeCompare(a.grupo));
+
+      const groupOrder = [
+        "Módulo Querigmático",
+        "Módulo Básico",
+        "Grupo de Perseverança",
+        "Formação de Ministérios",
+        "Formação de Formadores",
+        "Formação de Coordenadores",
+      ];
+
+      const sortedData = [];
+
+      groupOrder.forEach((group) => {
+        const data = dadosOrganizados.find((d) => d.grupo === group);
+        if (data) {
+          sortedData.push(data);
+        }
+      });
+
+      dadosOrganizados = sortedData;
 
       // Ordena cada objeto "dados" pelo valor da propriedade "ordem" em ordem crescente
       dadosOrganizados.forEach((obj) => {
@@ -175,7 +194,6 @@ export default function SplashBoasVindas() {
           ),
         }));
       setCalendario(resultado);
-
     });
 
     //buscando as informações dos grupos de oração
@@ -190,7 +208,7 @@ export default function SplashBoasVindas() {
 
   return (
     <View style={estilo.containerBoasVindas}>
-      <StatusBar backgroundColor="#f2f2f2" barStyle='dark-content' />
+      <StatusBar backgroundColor="#f2f2f2" barStyle="dark-content" />
       <Image
         style={estilo.logoBoasVindas}
         source={require("../../assets/logo.png")}
